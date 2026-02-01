@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Learn SPF | Certimailer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const deck = document.getElementById("spfDeck");
+    const toggle = document.getElementById("deckToggle");
+    const stack = deck ? deck.querySelector(".deck-stack") : null;
+
+    if (!deck || !toggle || !stack) {
+      console.error("Deck setup missing:", { deck, toggle, stack });
+      return;
+    }
+
+    function setExpanded(state) {
+      deck.classList.toggle("expanded", state);
+      toggle.setAttribute("aria-expanded", state ? "true" : "false");
+      stack.setAttribute("aria-hidden", state ? "false" : "true");
+    }
+
+    toggle.addEventListener("click", () => {
+      setExpanded(!deck.classList.contains("expanded"));
+    });
+
+    // Optional: start collapsed (default)
+    setExpanded(false);
+  });
+</script>
+
+
+<body>
+
+  <header>
+    <h2 class="logo">Certimailer</h2>
+    <nav>
+      <ul>
+        <li><a href="../homepage.html">Home</a></li>
+        <li><a href="../detection.html">Detection Tool</a></li>
+        <li><a href="../comparison.html">Comparison Tool</a></li>
+        <li><a href="../visualization.html">Visualization</a></li>
+        <li><a href="../learning.html" class="active">Learning</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO (uses your existing .hero CSS) -->
+  <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="../videos/learn-bg.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <h1 class="hero-title">
+        Sender Policy Framework
+        <span>(SPF)</span>
+      </h1>
+      <p>
+        Prevent email spoofing with SPF.<br>
+        Authorise trusted sending servers.
+      </p>
+
+      <a class="learn-card-btn" href="#spf-qualifiers">Learn more</a>
+      <a class="learn-card-btn quiz-btn" href="spf-quiz.html">Start quiz</a>
+
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <div class="learn-container">
+    <h2 class="learn-page-title">Want to learn more about SPF?</h2>
+
+    <section class="journey" id="spfDeck">
+
+      <!-- Cover image shown first -->
+      <button class="journey-cover" id="deckToggle" type="button" aria-expanded="false">
+        <img src="../images/spf-cover.jpg" alt="SPF cover">
+        <div class="journey-cover-overlay">
+          <p class="journey-kicker">SPF Learning</p>
+          <h3 class="journey-title">Tap to explore</h3>
+        </div>
+      </button>
+
+      <!-- Cards replace the cover -->
+      <div class="journey-cards" aria-hidden="true">
+
+        <article class="journey-card card-1">
+          <h3>What is SPF?</h3>
+          <p>SPF lists which mail servers are allowed to send email for a domain.</p>
+        </article>
+
+        <article class="journey-card card-2">
+          <h3>SPF Qualifiers</h3>
+          <p>Qualifiers tell receivers how strict to be: pass, fail, softfail, neutral.</p>
+        </article>
+
+        <article class="journey-card card-3">
+          <h3>How SPF Works</h3>
+          <p>The receiver checks the sender IP against the domain’s SPF DNS record.</p>
+        </article>
+
+        <article class="journey-card card-4">
+          <h3>Why SPF Matters</h3>
+          <p>It reduces spoofing by limiting who can send mail for your domain.</p>
+        </article>
+
+        <article class="journey-card card-5">
+          <h3>SPF in Digital Forensics</h3>
+          <p>SPF results in headers help show if a message was likely spoofed.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const deck = document.getElementById("spfDeck");
+        const toggle = document.getElementById("deckToggle");
+        const cards = deck.querySelector(".journey-cards");
+
+        function setExpanded(state) {
+          deck.classList.toggle("expanded", state);
+          toggle.setAttribute("aria-expanded", state ? "true" : "false");
+          cards.setAttribute("aria-hidden", state ? "false" : "true");
+        }
+
+        toggle.addEventListener("click", () => {
+          setExpanded(!deck.classList.contains("expanded"));
+        });
+
+        setExpanded(false);
+      });
+    </script>
+
+
+  </div>
+
+</body>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <p>© 2025 Certimailer. All Rights Reserved.</p>
+    <p class="footer-note">Built to promote secure email practices through interactive detection and education tools</p>
+  </div>
+</footer>
+
+</html>

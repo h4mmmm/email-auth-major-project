@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage | Certimailer</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".reveal").forEach(el => {
+            setTimeout(() => el.classList.add("show"), 100);
+        });
+    });
+</script>
+
+<script>
+    const track = document.getElementById("carouselTrack");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    let autoScrollInterval;
+    const SCROLL_DELAY = 3500; // 3.5 seconds
+
+    function getCardScrollAmount() {
+        const card = track.querySelector(".topic-card");
+        return card ? card.offsetWidth + 14 : 300;
+    }
+
+    function scrollNext() {
+        const maxScroll = track.scrollWidth - track.clientWidth;
+        const nextScroll = track.scrollLeft + getCardScrollAmount();
+
+        if (nextScroll >= maxScroll - 5) {
+            // Loop back to start
+            track.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+            track.scrollBy({ left: getCardScrollAmount(), behavior: "smooth" });
+        }
+    }
+
+    function scrollPrev() {
+        track.scrollBy({ left: -getCardScrollAmount(), behavior: "smooth" });
+    }
+
+    function startAutoScroll() {
+        stopAutoScroll();
+        autoScrollInterval = setInterval(scrollNext, SCROLL_DELAY);
+    }
+
+    function stopAutoScroll() {
+        if (autoScrollInterval) clearInterval(autoScrollInterval);
+    }
+
+    // Button controls
+    nextBtn.addEventListener("click", () => {
+        stopAutoScroll();
+        scrollNext();
+        startAutoScroll();
+    });
+
+    prevBtn.addEventListener("click", () => {
+        stopAutoScroll();
+        scrollPrev();
+        startAutoScroll();
+    });
+
+    // Pause on hover (desktop)
+    track.addEventListener("mouseenter", stopAutoScroll);
+    track.addEventListener("mouseleave", startAutoScroll);
+
+    // Pause on touch/scroll (mobile)
+    track.addEventListener("touchstart", stopAutoScroll);
+    track.addEventListener("touchend", startAutoScroll);
+    track.addEventListener("wheel", stopAutoScroll, { passive: true });
+
+    // Start auto scroll
+    startAutoScroll();
+</script>
+
+
+<body>
+    <header>
+        <h2 class="logo">Certimailer</h2>
+        <nav>
+            <ul>
+                <li><a href="homepage.html" class="active">Home</a></li>
+                <li><a href="detection.html">Detection Tool</a></li>
+                <li><a href="header-analyzer.html">Header Analyzer</a></li>
+
+                <li><a href="visualization.html">Visualization</a></li>
+                <li><a href="learning.html">Learning</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <!-- Background video -->
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="videos/hero-bg.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <!-- Dark overlay -->
+        <div class="hero-overlay"></div>
+
+        <!-- Existing content -->
+        <div class="hero-content">
+            <h1 class="reveal hero-title">
+                Protect Your Emails.<br>
+                <span>Understand How It Works.</span>
+            </h1>
+
+            <div class="intro-box reveal delay-1">
+                <p>
+                    Easily check SPF, DKIM, and DMARC settings and learn how email authentication
+                    protects you from spoofing and phishing.
+                </p>
+            </div>
+
+            <div class="hero-buttons reveal delay-2">
+                <a href="detection.html" class="hero-link-btn primary">
+                    Get started
+                </a>
+
+                <a href="learning.html" class="hero-link-btn">
+                    Learn more
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <p>© 2025 Certimailer. All Rights Reserved.</p>
+        <p class="footer-note">Built to promote secure email practices through interactive detection and education tools
+        </p>
+    </div>
+</footer>
+
+</html>

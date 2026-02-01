@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning | Certimailer</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<script>
+    // Keep the same reveal animation behavior as your homepage
+    window.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".reveal").forEach(el => {
+            setTimeout(() => el.classList.add("show"), 100);
+        });
+    });
+</script>
+
+<body>
+
+    <header>
+        <h2 class="logo">Certimailer</h2>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="detection.html">Detection Tool</a></li>
+                <li><a href="header-analyzer.html">Header Analyzer</a></li>
+
+                <li><a href="visualization.html">Visualization</a></li>
+                <li><a href="learning.html" class="active">Learning</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO (same structure as homepage so video works the same) -->
+    <div class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="videos/hero-bg.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h1 class="reveal hero-title">
+                Welcome to <span>MailMentor</span>
+            </h1>
+
+            <div class="intro-box reveal delay-1">
+                <p>
+                    Start from the basics and learn how SPF, DKIM, and DMARC protect your inbox.
+                    Read short lessons, then test yourself with interactive quizzes.
+                </p>
+            </div>
+
+            <div class="hero-buttons reveal delay-2">
+                <button class="hero-link-btn primary"
+                    onclick="document.getElementById('learningStart').scrollIntoView({behavior:'smooth'});">
+                    Start Learning
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <main id="learningStart">
+
+        <!-- Speech bubble: BELOW intro, ABOVE progress -->
+        <div class="learning-intro">
+            <img src="images/mascot.png" alt="Learning Mascot" class="learning-mascot" />
+            <div class="speech-bubble">
+                <p>What would you like to learn?</p>
+            </div>
+        </div>
+
+        <!-- Progress tracker -->
+        <div class="progress-tracker">
+            <h2>Your Learning Progress</h2>
+
+            <div class="progress-item">
+                <span>SPF Quiz</span>
+                <div class="progress-bar">
+                    <div class="progress-fill spf-fill" style="width: 60%;"></div>
+                </div>
+                <span class="progress-status">3 / 5 completed</span>
+            </div>
+
+            <div class="progress-item">
+                <span>DKIM Quiz</span>
+                <div class="progress-bar">
+                    <div class="progress-fill dkim-fill" style="width: 40%;"></div>
+                </div>
+                <span class="progress-status">2 / 5 completed</span>
+            </div>
+
+            <div class="progress-item">
+                <span>DMARC Quiz</span>
+                <div class="progress-bar">
+                    <div class="progress-fill dmarc-fill" style="width: 0%;"></div>
+                </div>
+                <span class="progress-status">Not started</span>
+            </div>
+
+            <div class="progress-item">
+                <span>Spoofing Quiz</span>
+                <div class="progress-bar">
+                    <div class="progress-fill spoof-fill" style="width: 80%;"></div>
+                </div>
+                <span class="progress-status">4 / 5 completed</span>
+            </div>
+
+            <div class="progress-item">
+                <span>Detection Quiz</span>
+                <div class="progress-bar">
+                    <div class="progress-fill detect-fill" style="width: 20%;"></div>
+                </div>
+                <span class="progress-status">1 / 5 completed</span>
+            </div>
+        </div>
+
+        <!-- Carousel section -->
+        <section class="topic-carousel" aria-label="Learning topics">
+            <div class="carousel-header">
+                <h2>Start Your Email Security Journey Here</h2>
+                <p class="carousel-subtext"> Discover how SPF, DKIM, and DMARC protect your inbox — one topic at a time.
+                </p>
+            </div>
+
+            <!-- Apple-style viewport -->
+            <div class="apple-carousel" id="topicCarousel">
+                <div class="carousel-viewport" id="carouselViewport" tabindex="0">
+                    <div class="carousel-track" id="carouselTrack">
+
+                        <!-- Slide 1 -->
+                        <a class="topic-card apple-card" href="learning/spf-learn.html">
+                            <div class="topic-media">
+                                <!-- Replace with your own image -->
+                                <img class="topic-thumb" src="images/topics/spf.png" alt="SPF topic image"
+                                    loading="lazy">
+                            </div>
+                            <div class="topic-body">
+                                <div class="topic-badge">SPF</div>
+                                <h3>Sender Policy Framework</h3>
+                                <p>Learn how SPF checks which servers are allowed to send for a domain.</p>
+                                <span class="topic-cta">Learn →</span>
+                            </div>
+                        </a>
+
+                        <!-- Slide 2 -->
+                        <a class="topic-card apple-card" href="learning/dkim-learn.html">
+                            <div class="topic-media">
+                                <img class="topic-thumb" src="images/topics/dkim.png" alt="DKIM topic image"
+                                    loading="lazy">
+                            </div>
+                            <div class="topic-body">
+                                <div class="topic-badge">DKIM</div>
+                                <h3>DomainKeys Identified Mail</h3>
+                                <p>Understand signatures, selectors, and what “DKIM pass” means.</p>
+                                <span class="topic-cta">Learn →</span>
+                            </div>
+                        </a>
+
+                        <!-- Slide 3 -->
+                        <a class="topic-card apple-card" href="learning/dmarc-learn.html">
+                            <div class="topic-media">
+                                <img class="topic-thumb" src="images/topics/dmarc.png" alt="DMARC topic image"
+                                    loading="lazy">
+                            </div>
+                            <div class="topic-body">
+                                <div class="topic-badge">DMARC</div>
+                                <h3>DMARC Policy</h3>
+                                <p>See how alignment and policy rules reduce spoofing and phishing.</p>
+                                <span class="topic-cta">Learn →</span>
+                            </div>
+                        </a>
+
+                        <!-- Slide 4 -->
+                        <a class="topic-card apple-card" href="learning/spoofing-learn.html">
+                            <div class="topic-media">
+                                <img class="topic-thumb" src="images/topics/spoofing.png" alt="Spoofing topic image"
+                                    loading="lazy">
+                            </div>
+                            <div class="topic-body">
+                                <div class="topic-badge">Spoofing</div>
+                                <h3>Why Spoofing Happens</h3>
+                                <p>Explore common spoofing tricks and why weak auth makes it easier.</p>
+                                <span class="topic-cta">Learn →</span>
+                            </div>
+                        </a>
+
+                        <!-- Slide 5 -->
+                        <a class="topic-card apple-card" href="learning/detection-learn.html">
+                            <div class="topic-media">
+                                <img class="topic-thumb" src="images/topics/tools.png" alt="Tools topic image"
+                                    loading="lazy">
+                            </div>
+                            <div class="topic-body">
+                                <div class="topic-badge">Tools</div>
+                                <h3>How Detection Tools Help</h3>
+                                <p>See how tools highlight weak settings and support investigations.</p>
+                                <span class="topic-cta">Learn →</span>
+                            </div>
+                        </a>
+
+                        <!-- Slide 6 (Locked) -->
+                        <div class="topic-card apple-card locked" title="Complete all quizzes to unlock">
+                            <div class="topic-media">
+                                <img class="topic-thumb" src="images/topics/locked.png" alt="Locked topic image"
+                                    loading="lazy">
+                            </div>
+                            <div class="topic-body">
+                                <div class="lock-row">
+                                    <span class="lock-icon">🔒</span>
+                                    <div class="topic-badge">Advanced</div>
+                                </div>
+                                <h3>Advanced DMARC</h3>
+                                <p>Complete the other quizzes to unlock this advanced section.</p>
+                                <span class="topic-cta">Locked</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Dots -->
+                <div class="carousel-dots" id="carouselDots" aria-label="Carousel navigation"></div>
+            </div>
+        </section>
+
+        <section class="quiz-features" id="quizzes">
+
+            <!-- ✅ Header stays on top -->
+            <div class="quiz-features-head">
+                <h2 class="quiz-feature-title">Incredible Quiz Features</h2>
+                <p class="quiz-feature-sub">
+                    Our quizzes reinforce learning — not just memorisation.
+                </p>
+            </div>
+
+            <!-- ✅ Cards grid only -->
+            <div class="quiz-feature-grid">
+
+                <div class="quiz-feature-card">
+                    <div class="quiz-icon">🧠</div>
+                    <h3>Protocol-Specific Quizzes</h3>
+                    <p>Each quiz focuses on one protocol — SPF, DKIM, or DMARC — so you master one concept at a time.
+                    </p>
+                </div>
+
+                <div class="quiz-feature-card">
+                    <div class="quiz-icon">🔀</div>
+                    <h3>Randomised Every Attempt</h3>
+                    <p>Questions are selected from a large bank, so no two attempts feel the same.</p>
+                </div>
+
+                <div class="quiz-feature-card">
+                    <div class="quiz-icon">📊</div>
+                    <h3>Progress & Feedback</h3>
+                    <p>Track progress question by question and get instant explanations after each answer.</p>
+                </div>
+
+                <div class="quiz-feature-card">
+                    <div class="quiz-icon">⏱️</div>
+                    <h3>Timed for Focus</h3>
+                    <p>A built-in timer keeps you focused while still letting you learn at your own pace.</p>
+                </div>
+
+                <div class="quiz-feature-card">
+                    <div class="quiz-icon">🏆</div>
+                    <h3>Score & Retry</h3>
+                    <p>See your score and time taken, then retry to improve and build confidence.</p>
+                </div>
+
+                <div class="quiz-feature-card">
+                    <div class="quiz-icon">🎓</div>
+                    <h3>Learning-Driven Design</h3>
+                    <p>Quizzes connect directly to learning topics so you can apply concepts immediately.</p>
+                </div>
+
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>© 2025 Certimailer. All Rights Reserved.</p>
+            <p class="footer-note">
+                Built to promote secure email practices through interactive detection and education tools
+            </p>
+        </div>
+    </footer>
+
+    <!-- Carousel auto-move + buttons -->
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            const viewport = document.getElementById("carouselViewport");
+            const track = document.getElementById("carouselTrack");
+            const dotsWrap = document.getElementById("carouselDots");
+            if (!viewport || !track || !dotsWrap) return;
+
+            const slides = Array.from(track.querySelectorAll(".topic-card"));
+            if (!slides.length) return;
+
+            // Create dots
+            dotsWrap.innerHTML = "";
+            const dots = slides.map((_, i) => {
+                const b = document.createElement("button");
+                b.type = "button";
+                b.className = "dot";
+                b.setAttribute("aria-label", `Go to slide ${i + 1}`);
+                b.addEventListener("click", () => {
+                    slides[i].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+                    resetAuto();
+                });
+                dotsWrap.appendChild(b);
+                return b;
+            });
+
+            // Find "active" slide by which one is most centered
+            function getActiveIndex() {
+                const vpRect = viewport.getBoundingClientRect();
+                const vpCenter = vpRect.left + vpRect.width / 2;
+
+                let bestIdx = 0;
+                let bestDist = Infinity;
+
+                slides.forEach((s, i) => {
+                    const r = s.getBoundingClientRect();
+                    const center = r.left + r.width / 2;
+                    const dist = Math.abs(vpCenter - center);
+                    if (dist < bestDist) {
+                        bestDist = dist;
+                        bestIdx = i;
+                    }
+                });
+                return bestIdx;
+            }
+
+            function setActiveDot(idx) {
+                dots.forEach((d, i) => d.classList.toggle("active", i === idx));
+            }
+
+            // Update dots on scroll
+            let raf = null;
+            viewport.addEventListener("scroll", () => {
+                if (raf) cancelAnimationFrame(raf);
+                raf = requestAnimationFrame(() => setActiveDot(getActiveIndex()));
+            }, { passive: true });
+
+            // Auto-advance
+            const AUTO_MS = 3800;
+            let autoTimer = null;
+
+            function goNext() {
+                const idx = getActiveIndex();
+                const next = (idx + 1) % slides.length;
+                slides[next].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+                setActiveDot(next);
+            }
+
+            function startAuto() {
+                stopAuto();
+                autoTimer = setInterval(goNext, AUTO_MS);
+            }
+
+            function stopAuto() {
+                if (autoTimer) clearInterval(autoTimer);
+                autoTimer = null;
+            }
+
+            function resetAuto() {
+                stopAuto();
+                startAuto();
+            }
+
+            // Pause on hover / touch
+            viewport.addEventListener("mouseenter", stopAuto);
+            viewport.addEventListener("mouseleave", startAuto);
+            viewport.addEventListener("touchstart", stopAuto, { passive: true });
+            viewport.addEventListener("touchend", startAuto, { passive: true });
+
+            // Init
+            setActiveDot(0);
+            startAuto();
+        });
+    </script>
+
+
+</body>
+
+</html>

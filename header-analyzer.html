@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analyzer | Certimailer</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/forensics.css" /> <!-- Reusing Forensics styles for cards/timeline -->
+    <script src="js/header-analyzer.js" defer></script>
+</head>
+
+<body class="gradient-page">
+
+    <header>
+        <h2 class="logo">Certimailer</h2>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="detection.html">Detection Tool</a></li>
+                <li><a href="header-analyzer.html" class="active">Header Analyzer</a></li>
+                <li><a href="visualization.html">Visualization</a></li>
+                <li><a href="learning.html">Learning</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page">
+
+        <!-- INTRO -->
+        <section class="page-hero">
+            <p class="kicker">UNIFIED ANALYSIS TOOL</p>
+            <h1 class="page-title">Email Header Analyzer</h1>
+            <p class="page-subtitle">
+                Analyze email headers, upload .EML files, or simulate phishing scenarios to understand authentication
+                gaps.
+            </p>
+        </section>
+
+        <!-- NEW: Onboarding / Quick Start -->
+        <section class="onboarding-panel" id="onboardingPanel">
+            <div class="onboarding-header">
+                <h3>New to Header Analysis?</h3>
+                <button class="close-onboarding" id="closeOnboarding" aria-label="Close guide">×</button>
+            </div>
+            <div class="onboarding-grid">
+                <div class="onboarding-step">
+                    <span class="step-num">1</span>
+                    <h4>What is a Header?</h4>
+                    <p>It's the hidden "digital passport" of an email. It shows the path, sender IP, and security
+                        checks.</p>
+                </div>
+                <div class="onboarding-step">
+                    <span class="step-num">2</span>
+                    <h4>Why Analyze it?</h4>
+                    <p>To spot <strong>phishing</strong> and <strong>spoofing</strong>. Legitimate emails have passing
+                        grades for SPF, DKIM, and DMARC.</p>
+                </div>
+                <div class="onboarding-step">
+                    <span class="step-num">3</span>
+                    <h4>How to get it?</h4>
+                    <p>In Gmail: open email → 3 dots → "Show original". In Outlook: File → Properties → Internet
+                        Headers.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TABS -->
+        <div class="tab-container" style="max-width: 900px; margin: 0 auto 30px;">
+            <div class="tabs">
+                <button class="tab-btn active" data-target="tab-paste">Paste Header</button>
+                <button class="tab-btn" data-target="tab-upload">Upload File</button>
+                <button class="tab-btn" data-target="tab-builder">Scenario Builder</button>
+            </div>
+
+            <!-- TAB 1: PASTE -->
+            <div id="tab-paste" class="tab-content active">
+                <div class="card" style="margin-top:0; border-top-left-radius:0;">
+                    <p class="muted">Paste the raw email header text below.</p>
+                    <textarea id="headerInput" class="textarea" placeholder="Paste full header here..."></textarea>
+                    <div class="row-actions">
+                        <button class="btn btn-primary" id="analyzeBtn">Analyze Header</button>
+                        <button class="btn btn-secondary" id="sampleBtn">Use Sample</button>
+                        <button class="btn btn-ghost" id="clearBtn">Clear</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: UPLOAD -->
+            <div id="tab-upload" class="tab-content">
+                <div class="upload-area" id="uploadDropZone" style="border-radius: 0 16px 16px 16px;">
+                    <div class="upload-icon">📁</div>
+                    <h3>Drop .EML or .TXT file here</h3>
+                    <p class="muted">We will extract the header automatically.</p>
+                    <input type="file" id="fileInput" accept=".eml,.txt" hidden>
+                </div>
+            </div>
+
+            <!-- TAB 3: BUILDER -->
+            <div id="tab-builder" class="tab-content">
+                <div class="card" style="margin-top:0; border-top-left-radius:0;">
+                    <h3>Simulate a Scenario</h3>
+                    <p class="muted">Generate a fake header to see how analysis handles it.</p>
+
+                    <div class="input-group" style="margin: 20px 0;">
+                        <select id="scenarioSelect"
+                            style="width: 100%; padding: 12px; border-radius: 8px; background: rgba(0,0,0,0.3); color: white; border: 1px solid rgba(255,255,255,0.2);">
+                            <option value="legit">Legitimate Email (Passes All)</option>
+                            <option value="spf-fail">SPF Failure</option>
+                            <option value="dkim-fail">DKIM Failure</option>
+                            <option value="dmarc-fail">DMARC Failure</option>
+                            <option value="phishing">Advanced Phishing</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary" id="buildBtn">Generate & Analyze</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOADING -->
+        <div id="loadingOverlay" class="loading-overlay" style="display:none;">
+            <div class="loading-card">
+                <div class="loading-title">Analyzing...</div>
+                <div class="loading-bar">
+                    <div class="loading-bar-fill" style="width: 100%; animation: load 1s infinite;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULTS -->
+        <section id="results" style="display:none;">
+
+            <!-- VERDICT -->
+            <section class="card">
+                <p class="kicker">VERDICT</p>
+                <h2 id="verdictTitle">—</h2>
+
+                <div class="score-box" style="margin: 20px 0;">
+                    <div class="score-pill" id="trustScore">—</div>
+                    <span class="muted" style="margin-left: 10px;">Trust Score</span>
+                </div>
+
+                <p class="muted" id="plainSummary">—</p>
+            </section>
+
+            <!-- AUTH CARDS -->
+            <section class="grid-3">
+                <div class="card mini">
+                    <h3>SPF <span class="help-icon"
+                            data-tooltip="Sender Policy Framework: Verifies if the sender's IP is authorized.">?</span>
+                    </h3>
+                    <p class="status" id="spfStatus">—</p>
+                    <p class="muted" id="spfExplain">—</p>
+                </div>
+                <div class="card mini">
+                    <h3>DKIM <span class="help-icon"
+                            data-tooltip="DomainKeys Identified Mail: Verifies the email hasn't been tampered with.">?</span>
+                    </h3>
+                    <p class="status" id="dkimStatus">—</p>
+                    <p class="muted" id="dkimExplain">—</p>
+                </div>
+                <div class="card mini">
+                    <h3>DMARC <span class="help-icon"
+                            data-tooltip="Domain-based Message Authentication: Tells servers what to do if SPF/DKIM fail.">?</span>
+                    </h3>
+                    <p class="status" id="dmarcStatus">—</p>
+                    <p class="muted" id="dmarcExplain">—</p>
+                </div>
+            </section>
+
+            <!-- NEW: FINDINGS (from Forensics) -->
+            <section class="card">
+                <h2>Critical Findings</h2>
+                <div id="findingsList" class="flex-col gap-10"></div>
+            </section>
+
+            <!-- MESSAGE DETAILS -->
+            <section class="card">
+                <h2>Message Details</h2>
+                <div class="table">
+                    <div class="trow">
+                        <div class="tkey">Subject</div>
+                        <div class="tval" id="subjectVal">—</div>
+                    </div>
+                    <div class="trow">
+                        <div class="tkey">From</div>
+                        <div class="tval" id="fromVal">—</div>
+                    </div>
+                    <div class="trow">
+                        <div class="tkey">To</div>
+                        <div class="tval" id="toVal">—</div>
+                    </div>
+                    <div class="trow">
+                        <div class="tkey">Date</div>
+                        <div class="tval" id="dateVal">—</div>
+                    </div>
+                    <div class="trow">
+                        <div class="tkey">Message-ID</div>
+                        <div class="tval mono" id="msgIdVal">—</div>
+                    </div>
+                    <div class="trow">
+                        <div class="tkey">Return-Path</div>
+                        <div class="tval mono" id="returnPathVal">—</div>
+                    </div>
+                    <div class="trow">
+                        <div class="tkey">Reply-To</div>
+                        <div class="tval" id="replyToVal">—</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NEW: TIMELINE (from Forensics) -->
+            <section class="card">
+                <h2>Email Journey</h2>
+                <div class="timeline" id="emailTimeline"></div>
+            </section>
+
+            <!-- NEW: REMEDIATION (from Forensics) -->
+            <section class="card">
+                <h2>Recommended Actions</h2>
+                <div id="remediationList"></div>
+            </section>
+
+            <!-- RAW -->
+            <section class="card">
+                <h2>Raw Header</h2>
+                <pre class="pre" id="rawHeader"></pre>
+            </section>
+
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2025 Certimailer</p>
+    </footer>
+
+</body>
+
+</html>

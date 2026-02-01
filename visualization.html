@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualization | Certimailer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .proof-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .proof-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .proof-card img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .proof-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .dns-record-box {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 12px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            border-left: 4px solid #00c6ff;
+            margin-bottom: 30px;
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2 class="logo">Certimailer</h2>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="detection.html">Detection Tool</a></li>
+                <li><a href="header-analyzer.html">Header Analyzer</a></li>
+                <li><a href="visualization.html" class="active">Visualization</a></li>
+                <li><a href="learning.html">Learning</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page">
+        <section class="page-hero">
+            <p class="kicker">PROJECT AUTHENTICATION</p>
+            <h1 class="page-title">Live Deployment Verification</h1>
+            <p class="page-subtitle">
+                Visual proof of our deployed SPF, DKIM, and DMARC configurations and test results.
+            </p>
+        </section>
+
+        <div class="card">
+            <h2>Live DNS Configuration</h2>
+            <p class="muted">Current records deployed for <code>mailtestmp.work.gd</code></p>
+
+            <div class="dns-record-box">
+                DMARC:
+                TXT Name: _dmarc.mailtestmp.work.gd.
+                TXT Value: v=DMARC1; p=quarantine; rua=mailto:dmarc@mailtestmp.work.gd; fo=1; pct=100
+
+                SPF:
+                TXT Name: mailtestmp.work.gd.
+                TXT Value: v=spf1 ip4:58.182.14.212 -all
+
+                DKIM:
+                TXT Name: selector1._domainkey.mailtestmp.work.gd.
+                TXT Value: v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOC... (Truncated for display)
+            </div>
+        </div>
+
+        <h2 style="margin-top: 50px; text-align: center;">Verification Tests</h2>
+
+        <div class="proof-grid">
+            <div class="proof-card">
+                <a href="images/proofs/MXSPFTest.jpg" target="_blank">
+                    <img src="images/proofs/MXSPFTest.jpg" alt="SPF Test Result">
+                </a>
+                <h3>SPF Verification</h3>
+                <p class="muted">Passing SPF check on MXToolbox</p>
+            </div>
+
+            <div class="proof-card">
+                <a href="images/proofs/MXDKIMTest.jpg" target="_blank">
+                    <img src="images/proofs/MXDKIMTest.jpg" alt="DKIM Test Result">
+                </a>
+                <h3>DKIM Verification</h3>
+                <p class="muted">Valid DKIM signature verification</p>
+            </div>
+
+            <div class="proof-card">
+                <a href="images/proofs/MXDMARCTest.jpg" target="_blank">
+                    <img src="images/proofs/MXDMARCTest.jpg" alt="DMARC Test Result">
+                </a>
+                <h3>DMARC Verification</h3>
+                <p class="muted">DMARC policy enforcement active</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>© 2025 Certimailer. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
