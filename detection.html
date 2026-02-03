@@ -7,9 +7,12 @@
   <title>Detection Tool | Certimailer</title>
   <link rel="stylesheet" href="css/detection_style.css">
   <link rel="stylesheet" href="css/style.css">
+  
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
 </head>
 
 <body>
@@ -28,7 +31,6 @@
     </nav>
   </header>
 
-  <!-- TOP CONTROLS (Print only mainly, theme toggle removed as we enforce dark scheme) -->
   <div class="top-controls" style="top: 100px;">
     <button class="icon-btn" onclick="window.print()" title="Export Report">
       <i class="fas fa-file-pdf"></i>
@@ -48,12 +50,44 @@
       <input type="text" id="domainInput" placeholder="Domain (e.g. google.com)">
       <input type="text" id="selectorInput" placeholder="DKIM Selector (Optional)">
       <button class="main-btn" onclick="runAnalysis()">Visualize Security</button>
+
+      <div id="errorBox" class="error-msg"></div>
     </div>
 
     <div id="scorecard">
       <div class="grade-circle" id="gradeCircle">-</div>
     </div>
 
+    <div class="legend-container">
+      <div class="legend-item">
+        <div class="legend-badge grade-a">A</div>
+        <div class="legend-text">
+          <strong>Excellent (3/3)</strong>
+          <span>Passes SPF, DKIM, & DMARC. Fully secure.</span>
+        </div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-badge grade-b">B</div>
+        <div class="legend-text">
+          <strong>Good (2/3)</strong>
+          <span>Missing 1 protocol (usually DKIM).</span>
+        </div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-badge grade-c">C</div>
+        <div class="legend-text">
+          <strong>Weak (1/3)</strong>
+          <span>Only basic SPF. Vulnerable to spoofing.</span>
+        </div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-badge grade-f">F</div>
+        <div class="legend-text">
+          <strong>Critical (0/3)</strong>
+          <span>No security. Emails likely Spam.</span>
+        </div>
+      </div>
+    </div>
     <div id="actionBanner">Action Plan Loading...</div>
 
     <div id="chartsContainer">
@@ -76,9 +110,7 @@
         <h3>SPF</h3>
         <p>Authorized IP list.</p>
         <div id="decoder-spf" class="decoder-area"></div>
-
         <code class="detect-code"><span id="raw-spf">Waiting...</span></code>
-
         <div id="fix-spf" class="fix-box">
           <span class="fix-label"><i class="fas fa-wrench"></i> SUGGESTED FIX</span>
           <code class="detect-code" id="code-fix-spf"></code>
@@ -99,9 +131,7 @@
           <div id="light-reject" class="light"></div>
         </div>
         <div id="decoder-dmarc" class="decoder-area"></div>
-
         <code class="detect-code"><span id="raw-dmarc">Waiting...</span></code>
-
         <div id="fix-dmarc" class="fix-box">
           <span class="fix-label"><i class="fas fa-wrench"></i> SUGGESTED FIX</span>
           <code class="detect-code" id="code-fix-dmarc"></code>
@@ -113,17 +143,14 @@
   <footer class="site-footer">
     <div class="footer-content">
       <p>© 2025 Certimailer. All Rights Reserved.</p>
-      <p class="footer-note">Built to promote secure email practices through interactive detection and education
-        tools
-      </p>
+      <p class="footer-note">Built to promote secure email practices through interactive detection and education tools</p>
     </div>
   </footer>
 
   <script>
     let barChart, pieChart, radarChart;
     let currentDomain = "";
-
-    // --- DNS LOGIC ---
+//fetches DNS records from Google's public DNS API
     async function queryDNS(name, type = 'TXT') {
       try {
         const response = await fetch(`https://dns.google/resolve?name=${name}&type=${type}`);
@@ -134,32 +161,57 @@
         return null;
       } catch (e) { return null; }
     }
-
+// triggrered when the button is clicked
     async function runAnalysis() {
       const inputField = document.getElementById('domainInput');
-      let rawInput = inputField.value.trim();
-      const selector = document.getElementById('selectorInput').value.trim();
+      const errorBox = document.getElementById('errorBox'); 
       const btn = document.querySelector('.main-btn');
+      const selector = document.getElementById('selectorInput').value.trim();
+      
+      let rawInput = inputField.value.trim();
 
-      if (!rawInput) { alert("Enter a domain"); return; }
+      // reset errors
+      if (errorBox) {
+        errorBox.style.display = 'none';
+        errorBox.textContent = '';
+      }
+      inputField.style.borderColor = '#dfe6e9'; // Reset border
+
+      // validation checks(ensyre that smth must be entered)
+      if (!rawInput) { 
+        showError("Please enter a domain name.");
+        return; 
+      }
+
+      // Clean domain (user@google.com -> google.com)
       currentDomain = rawInput.includes('@') ? rawInput.split('@').pop() : rawInput;
-      inputField.value = currentDomain;
+      inputField.value = currentDomain; 
 
+      // Regex: Must have text + dot + text (e.g. google.com)
+      const domainPattern = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!domainPattern.test(currentDomain)) {
+        showError(`"${currentDomain}" is not a valid domain.`);
+        return; // STOP HERE if invalid
+      }
+
+      // shows the loading state
       btn.textContent = "Scanning...";
       btn.disabled = true;
       document.getElementById('scorecard').style.display = 'block';
       document.getElementById('actionBanner').style.display = 'none';
       resetUI();
 
-      // --- FETCH ---
+      //SPF
       const spfRaw = await queryDNS(currentDomain, 'TXT');
-      const spfFound = spfRaw && spfRaw.includes("v=spf1");
+      const spfFound = spfRaw && spfRaw.includes("v=spf1"); 
       const spfData = spfFound ? extractRecord(spfRaw, "v=spf1") : "Missing";
 
+      // DMARC
       const dmarcRaw = await queryDNS(`_dmarc.${currentDomain}`, 'TXT');
       const dmarcFound = dmarcRaw && dmarcRaw.includes("v=DMARC1");
       const dmarcData = dmarcFound ? dmarcRaw : "Missing";
 
+      //DKIM
       let dkimFound = false;
       let dkimData = "Missing (Selector required)";
       if (selector) {
@@ -168,55 +220,63 @@
         dkimData = dkimFound ? dkimRaw : "Missing";
       }
 
-      // --- UPDATE UI ---
+      // UPDATE UI
       updateCard('spf', spfFound, spfData);
       updateCard('dkim', dkimFound, dkimData);
       updateCard('dmarc', dmarcFound, dmarcData);
 
-      if (spfFound) decodeSPF(spfData);
-      if (dmarcFound) decodeDMARC(dmarcData);
-
-      // Generate Fixes if Missing
-      if (!spfFound) generateFix('spf');
-      if (!dmarcFound) generateFix('dmarc');
+      if(spfFound) decodeSPF(spfData);
+      if(dmarcFound) decodeDMARC(dmarcData);
+      
+      if(!spfFound) generateFix('spf');
+      if(!dmarcFound) generateFix('dmarc');
 
       updateTrafficLight(dmarcData);
       updateCharts(spfFound, dkimFound, dmarcFound);
+      
+      // calculate the grade
       updateGradeAndBanner(spfFound, dkimFound, dmarcFound);
 
       btn.textContent = "Visualize Security";
       btn.disabled = false;
     }
 
+    // shows error message
+    function showError(message) {
+      const errorBox = document.getElementById('errorBox');
+      const inputField = document.getElementById('domainInput');
+      if (errorBox) {
+        errorBox.textContent = message;
+        errorBox.style.display = 'block';
+      } else {
+        alert(message); // Fallback if errorBox missing
+      }
+      inputField.style.borderColor = '#ff7675';
+      inputField.focus();
+    }
+
     function extractRecord(fullText, key) {
       if (!fullText.includes(key)) return fullText;
       return fullText;
     }
-
-    // --- SMART REMEDIATION ---
+// generate code snippets for missing elements
     function generateFix(type) {
       const box = document.getElementById(`fix-${type}`);
       const code = document.getElementById(`code-fix-${type}`);
-
       if (!box) return;
-
       box.style.display = 'block';
-
-      if (type === 'spf') {
-        code.textContent = `v=spf1 mx include:${currentDomain} ~all`;
-      } else if (type === 'dmarc') {
-        code.textContent = `v=DMARC1; p=none; rua=mailto:admin@${currentDomain}`;
-      }
+      if (type === 'spf') code.textContent = `v=spf1 mx include:${currentDomain} ~all`;
+      else if (type === 'dmarc') code.textContent = `v=DMARC1; p=none; rua=mailto:admin@${currentDomain}`;
     }
 
-    // --- DECODERS ---
+// Creates a colored "Chip" div and appends it to the container
     function createChip(text, type, containerId) {
       const chip = document.createElement('div');
       chip.className = `chip ${type}`;
       chip.textContent = text;
       document.getElementById(containerId).appendChild(chip);
     }
-
+// logic to break SPF string into parts
     function decodeSPF(record) {
       const parts = record.split(' ');
       const container = 'decoder-spf';
@@ -227,9 +287,9 @@
         else createChip(part, 'mechanism', container);
       });
     }
-
+// logic to break DMARC string into parts
     function decodeDMARC(record) {
-      const parts = record.split(';');
+      const parts = record.split(';'); //split by semicolon
       const container = 'decoder-dmarc';
       document.getElementById(container).innerHTML = '';
       parts.forEach(part => {
@@ -240,17 +300,16 @@
         else createChip(part, 'mechanism', container);
       });
     }
-
+// updates visual style of result cards
     function updateCard(type, isPass, data) {
       const card = document.getElementById(`card-${type}`);
       const rawSpan = document.getElementById(`raw-${type}`);
       const fixBox = document.getElementById(`fix-${type}`);
-
+      
       card.classList.remove('pass', 'fail');
       card.classList.add(isPass ? 'pass' : 'fail');
       rawSpan.textContent = data.length > 200 ? data.substring(0, 200) + "..." : data;
 
-      // Reset internals
       if (fixBox) fixBox.style.display = 'none';
       const decoder = document.getElementById(`decoder-${type}`);
       if (decoder && !isPass) decoder.innerHTML = '';
@@ -262,7 +321,7 @@
       else if (dmarcRecord.includes("p=quarantine")) document.getElementById('light-quar').classList.add('active', 'yellow');
       else if (dmarcRecord.includes("p=none")) document.getElementById('light-none').classList.add('active', 'red');
     }
-
+// calculate the final grade
     function updateGradeAndBanner(spf, dkim, dmarc) {
       const score = (spf ? 1 : 0) + (dkim ? 1 : 0) + (dmarc ? 1 : 0);
       const circle = document.getElementById('gradeCircle');
@@ -284,23 +343,23 @@
       circle.textContent = grade;
       circle.style.borderColor = color;
       circle.style.color = color;
-      banner.style.display = 'block';
-      banner.style.backgroundColor = color;
-      banner.textContent = advice;
+      
+      if(banner) {
+        banner.style.display = 'block';
+        banner.style.backgroundColor = color;
+        banner.textContent = advice;
+      }
     }
 
+    // clear visual elements
     function resetUI() {
       document.querySelectorAll('.light').forEach(l => l.classList.remove('active', 'red', 'yellow', 'green'));
       document.querySelectorAll('.decoder-area').forEach(d => d.innerHTML = '');
     }
-
-    // --- CHARTS ---
+// configurations for chart.js
     function updateCharts(spf, dkim, dmarc) {
       const data = [spf ? 1 : 0, dkim ? 1 : 0, dmarc ? 1 : 0];
-
-      // --- COLOR UPDATED HERE: Blue (#2563eb), Green, Yellow ---
       const colors = ['#2563eb', '#00b894', '#fdcb6e'];
-
       const opts = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } };
 
       if (barChart) barChart.destroy();
