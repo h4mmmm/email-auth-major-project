@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Learn DMARC | Certimailer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<script>
+  // Scroll reveal (same behavior as SPF/DKIM)
+  window.addEventListener("DOMContentLoaded", () => {
+    const items = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("show");
+      });
+    }, { threshold: 0.14 });
+
+    items.forEach(el => io.observe(el));
+  });
+</script>
+
+<body>
+
+<header>
+  <h2 class="logo">Certimailer</h2>
+  <nav>
+    <ul>
+      <li><a href="../homepage.html">Home</a></li>
+      <li><a href="../detection.html">Detection Tool</a></li>
+      <li><a href="../comparison.html">Comparison Tool</a></li>
+      <li><a href="../visualization.html">Visualization</a></li>
+      <li><a href="../learning.html" class="active">Learning</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="../videos/learn-bg.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <h1 class="hero-title">
+      Domain-based Message Authentication
+      <span>Reporting & Conformance (DMARC)</span>
+    </h1>
+
+    <p>
+      Turn SPF & DKIM into an enforceable policy.<br />
+      Reduce spoofing with alignment + action rules.
+    </p>
+
+    <!-- keep these -->
+    <div class="hero-buttons">
+      <a class="learn-card-btn" href="#dmarcDeck">Learn more</a>
+      <a class="learn-card-btn quiz-btn" href="dmarc-quiz.html">Start quiz</a>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<div class="learn-container">
+
+  <h2 class="learn-page-title">Want to learn more about DMARC?</h2>
+
+  <!-- DECK -->
+  <section class="journey" id="dmarcDeck">
+
+    <!-- Cover -->
+    <button class="journey-cover" id="deckToggle" type="button" aria-expanded="false">
+      <!-- Change this to your DMARC cover image -->
+      <img src="../images/learning-cover.jpg" alt="DMARC cover" />
+      <div class="journey-cover-overlay">
+        <p class="journey-kicker">DMARC Learning</p>
+        <h3 class="journey-title">Tap to explore</h3>
+      </div>
+    </button>
+
+    <!-- Cards (hidden until expanded) -->
+    <div class="journey-cards" id="journeyCards" aria-hidden="true">
+
+      <article class="journey-card card-1">
+        <h3>What is DMARC?</h3>
+        <p>DMARC tells receivers what to do when SPF/DKIM don’t align with the From domain.</p>
+      </article>
+
+      <article class="journey-card card-2">
+        <h3>Alignment (the key idea)</h3>
+        <p>DMARC checks if SPF or DKIM “passes” AND matches the visible From domain (alignment).</p>
+      </article>
+
+      <article class="journey-card card-3">
+        <h3>DMARC Policy (p=)</h3>
+        <p>Choose the action: none (monitor), quarantine (spam), reject (block).</p>
+      </article>
+
+      <article class="journey-card card-4">
+        <h3>Reporting (rua / ruf)</h3>
+        <p>DMARC can send reports so domain owners can monitor abuse and auth performance.</p>
+      </article>
+
+      <article class="journey-card card-5">
+        <h3>DMARC in Digital Forensics</h3>
+        <p>DMARC results in headers help validate spoofing claims and triage suspicious emails.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- =========================
+     SECTION 1: Split feature
+  ========================= -->
+  <section class="spf-scroll spf-split reveal">
+    <div class="split-left reveal delay-1">
+      <div class="feature-card">
+        <div class="feature-pill">DMARC • Deep Dive</div>
+        <h3>DMARC = policy + alignment</h3>
+        <p>
+          SPF and DKIM can pass but still be misleading if they don’t match the visible From domain.
+          DMARC solves that by requiring <strong>alignment</strong> and letting domain owners publish a policy.
+        </p>
+
+        <div class="mini-box">
+          <div class="mini-title">A typical DMARC DNS record</div>
+          <code>v=DMARC1; p=quarantine; rua=mailto:dmarc-reports@yourdomain.com; adkim=s; aspf=s;</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="split-right reveal delay-2">
+      <h2 class="section-title">DMARC outcomes (what receivers decide)</h2>
+      <p class="section-sub">
+        DMARC tells the receiver what to do when alignment fails. It’s why DMARC is often the most
+        important final “decision layer” in email authentication.
+      </p>
+
+      <div class="icon-row">
+        <div class="icon-chip"><span>👀</span> p=none (monitor)</div>
+        <div class="icon-chip"><span>⚠️</span> p=quarantine</div>
+        <div class="icon-chip"><span>⛔</span> p=reject</div>
+        <div class="icon-chip"><span>🔎</span> align pass/fail</div>
+      </div>
+
+      <a class="cta-link" href="dmarc-quiz.html">Test your DMARC knowledge →</a>
+    </div>
+  </section>
+
+  <!-- =========================
+     SECTION 2: Feature grid
+  ========================= -->
+  <section class="spf-scroll spf-grid reveal">
+    <div class="grid-head reveal delay-1">
+      <div class="tiny-kicker">DMARC in practice</div>
+      <h2 class="section-title">What students usually miss</h2>
+      <p class="section-sub">
+        These DMARC concepts appear a lot in troubleshooting and investigations.
+      </p>
+    </div>
+
+    <div class="grid-cards">
+      <article class="info-card reveal delay-1">
+        <h3>SPF/DKIM pass ≠ DMARC pass</h3>
+        <p>
+          DMARC depends on <strong>alignment</strong>. A message can have SPF=pass but still fail DMARC
+          if the authenticated domain doesn’t match the visible From domain.
+        </p>
+        <div class="tag">Quiz-aligned</div>
+      </article>
+
+      <article class="info-card reveal delay-2">
+        <h3>Strict vs relaxed alignment</h3>
+        <p>
+          Tags like <strong>aspf</strong> and <strong>adkim</strong> control alignment strictness.
+          Strict requires exact domain match; relaxed allows subdomain relationships.
+        </p>
+        <div class="tag">Policy tuning</div>
+      </article>
+
+      <article class="info-card reveal delay-3">
+        <h3>Forensics (Authentication-Results)</h3>
+        <p>
+          In forensic triage, check <strong>Authentication-Results</strong> for spf/dkim/dmarc results,
+          then compare From, Return-Path, and DKIM d= domain to identify spoofing patterns.
+        </p>
+        <a class="mini-link" href="../header-analyzer.html">Open Header Analyzer →</a>
+      </article>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <p>© 2025 Certimailer. All Rights Reserved.</p>
+    <p class="footer-note">Built to promote secure email practices through interactive detection and education tools</p>
+  </div>
+</footer>
+
+<script>
+  // Deck expand/collapse (same as SPF/DKIM)
+  window.addEventListener("DOMContentLoaded", () => {
+    const deck = document.getElementById("dmarcDeck");
+    const toggle = document.getElementById("deckToggle");
+    const cards = document.getElementById("journeyCards");
+    if (!deck || !toggle || !cards) return;
+
+    function setExpanded(state){
+      deck.classList.toggle("expanded", state);
+      toggle.setAttribute("aria-expanded", state ? "true" : "false");
+      cards.setAttribute("aria-hidden", state ? "false" : "true");
+    }
+
+    toggle.addEventListener("click", () => {
+      setExpanded(!deck.classList.contains("expanded"));
+    });
+
+    setExpanded(false);
+  });
+</script>
+
+</body>
+</html>
