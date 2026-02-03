@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DMARC Quiz | Certimailer</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../assets/css/quiz-ui.css">
+</head>
+
+<body class="quiz-page">
+
+<header>
+  <h2 class="logo">Certimailer</h2>
+  <nav>
+    <ul>
+      <li><a href="../homepage.html">Home</a></li>
+      <li><a href="../detection.html">Detection Tool</a></li>
+      <li><a href="../header-analyzer.html">Header Analyzer</a></li>
+      <li><a href="../visualization.html">Visualization</a></li>
+      <li><a href="../learning.html" class="active">Learning</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="quiz-wrap">
+
+  <section class="quiz-hero">
+    <h1>DMARC Knowledge Quiz</h1>
+    <p>Test your understanding of DMARC policy, alignment, and reporting.</p>
+  </section>
+
+  <div class="quiz-top">
+    <div class="pill">
+      ⏱ <strong id="timer">00:00</strong>
+    </div>
+
+    <div class="progress-rail">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <button class="submit-mini" type="button" onclick="submitQuiz()">
+      Submit
+    </button>
+  </div>
+
+  <section class="q-card">
+    <div class="q-meta">
+      <span class="pill" id="qCount">Question 1</span>
+      <span class="pill">DMARC</span>
+    </div>
+
+    <p class="q-text" id="question">Loading…</p>
+    <div class="divider"></div>
+
+    <div class="answers" id="answers"></div>
+    <div class="feedback" id="feedback"></div>
+
+    <div class="next-wrap">
+      <button class="btn-next" id="nextBtn" type="button" onclick="nextQuestion()">
+        Next Question
+      </button>
+
+      <div class="end-actions" id="endButtons">
+        <button class="btn-soft" type="button" onclick="restartQuiz()">Redo Quiz</button>
+        <button class="btn-soft" type="button" onclick="window.location.href='../learning.html'">
+          Back to Learning
+        </button>
+      </div>
+    </div>
+
+    <p class="score-line" id="score"></p>
+
+    <!-- ✅ Result Card (shown when quiz ends) -->
+    <div class="quiz-result-wrap" id="resultWrap">
+      <div class="result-card">
+        <div class="result-badge">🏆</div>
+        <div class="result-title" id="resultTitle">Congrats!</div>
+        <div class="result-score" id="resultScore">0%</div>
+
+        <p class="result-sub" id="resultSub">
+          Quiz completed successfully.
+        </p>
+
+        <div class="result-meta" id="resultMeta"></div>
+
+        <div class="result-actions">
+          <button class="btn-wide primary" type="button" onclick="restartQuiz()">Redo this quiz</button>
+          <button class="btn-wide secondary" type="button" onclick="window.location.href='../learning.html#quizzes'">
+            Do another quiz
+          </button>
+          <button class="btn-wide secondary" type="button" onclick="window.location.href='../learning.html'">
+            Back to learning
+          </button>
+        </div>
+
+        <div class="result-share">
+          <button class="share-dot" type="button" title="Copy score" onclick="copyScore()" aria-label="Copy score">
+            <img src="../images/copy.png" alt="" />
+          </button>
+
+          <button class="share-dot" type="button" title="Share" onclick="shareScore()" aria-label="Share results">
+            <img src="../images/share.png" alt="" />
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <p>© 2025 Certimailer. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- ✅ Correct paths based on your folder tree -->
+<script src="../assets/js/banks/dmarc.bank.js" defer></script>
+
+<!-- IMPORTANT: match your REAL filename -->
+<script src="../assets/js/quiz.egine.js" defer></script>
+
+<script defer>
+  function nextQuestion(){ window.QuizEngine?.nextQuestion(); }
+  function restartQuiz(){ location.reload(); }
+  function submitQuiz(){ window.QuizEngine?.submitNow?.(); }
+
+  function copyScore(){
+    const txt = document.getElementById("resultScore")?.innerText || "";
+    navigator.clipboard?.writeText(`I scored ${txt} on Certimailer DMARC quiz!`);
+  }
+
+  function shareScore(){
+    const txt = document.getElementById("resultScore")?.innerText || "";
+    const shareData = {
+      title: "Certimailer DMARC Quiz",
+      text: `I scored ${txt} on the DMARC quiz!`,
+    };
+    if (navigator.share) navigator.share(shareData);
+    else copyScore();
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    console.log("DMARC_BANK:", !!window.DMARC_BANK, window.DMARC_BANK?.length);
+    console.log("QuizEngine:", !!window.QuizEngine);
+
+    if (!window.DMARC_BANK) {
+      console.error("❌ DMARC_BANK missing. In dmarc.bank.js, use: window.DMARC_BANK = [...]");
+      return;
+    }
+    if (!window.QuizEngine) {
+      console.error("❌ QuizEngine missing. quiz-engine.js not loaded or not defining window.QuizEngine");
+      return;
+    }
+
+    window.QuizEngine.start({
+      bank: window.DMARC_BANK,
+      quizCount: 5,
+      recentAvoid: 8,
+      storagePrefix: "certimailer_dmarc"
+    });
+  });
+</script>
+
+</body>
+</html>
