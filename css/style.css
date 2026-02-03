@@ -2237,3 +2237,224 @@ html { scroll-behavior: smooth; }
       25% { transform: translateX(-5px); }
       75% { transform: translateX(5px); }
     }
+
+    /* Detection Cards (Scoped to avoid conflict with global .card) */
+.info-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.detect-card {
+    background: rgba(255, 255, 255, 0.06);
+    padding: 25px;
+    border-radius: 12px;
+    border-top: 5px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    position: relative;
+    transition: transform 0.2s;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detect-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.detect-card.pass {
+    border-top-color: #00b894;
+}
+
+.detect-card.fail {
+    border-top-color: #ff7675;
+}
+
+.detect-card h3 {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1em;
+    color: white;
+}
+
+.detect-card p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9em;
+}
+
+/* Decoder Chips */
+.decoder-area {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.chip {
+    font-size: 0.75em;
+    padding: 5px 8px;
+    border-radius: 12px;
+    font-family: monospace;
+    border: 1px solid transparent;
+    white-space: normal;
+    word-break: break-all;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.chip.version {
+    background: rgba(3, 169, 244, 0.2);
+    color: #29b6f6;
+    border-color: #0277bd;
+}
+
+.chip.mechanism {
+    background: rgba(156, 39, 176, 0.2);
+    color: #ab47bc;
+    border-color: #7b1fa2;
+}
+
+.chip.policy {
+    background: rgba(76, 175, 80, 0.2);
+    color: #66bb6a;
+    border-color: #2e7d32;
+}
+
+.chip.bad {
+    background: rgba(244, 67, 54, 0.2);
+    color: #ef5350;
+    border-color: #c62828;
+}
+
+/* Detection Code Blocks */
+.detect-code {
+    background: #0f172a;
+    color: #81ecec;
+    padding: 15px;
+    display: block;
+    border-radius: 6px;
+    font-family: 'Consolas', monospace;
+    font-size: 0.85em;
+    overflow-x: auto;
+    min-height: 20px;
+    margin-top: 10px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fix-box {
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(255, 118, 117, 0.1);
+    border-radius: 6px;
+    border: 1px dashed #ff7675;
+    display: none;
+}
+
+.fix-label {
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #ff7675;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Scorecard */
+#scorecard {
+    text-align: center;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.grade-circle {
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 48px;
+    font-weight: 800;
+    margin: 0 auto 15px auto;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border: 5px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+/* Traffic Light */
+.traffic-light {
+    display: flex;
+    gap: 5px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 5px;
+    border-radius: 20px;
+    width: fit-content;
+}
+
+.light {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #555;
+    transition: 0.3s;
+}
+
+.light.active.red {
+    background: #ff7675;
+    box-shadow: 0 0 10px #ff7675;
+}
+
+.light.active.yellow {
+    background: #fdcb6e;
+    box-shadow: 0 0 10px #fdcb6e;
+}
+
+.light.active.green {
+    background: #00b894;
+    box-shadow: 0 0 10px #00b894;
+}
+
+/* Print Overrides */
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    #inputSection,
+    header,
+    footer,
+    .top-controls {
+        display: none !important;
+    }
+
+    .detect-card,
+    .chartBox {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+        color: black;
+    }
+
+    .detect-card h3 {
+        color: black;
+    }
+
+    .detect-card p {
+        color: #333;
+    }
+
+    .detect-code {
+        background: #f5f5f5;
+        color: black;
+        border: 1px solid #ccc;
+    }
+
+
+}
