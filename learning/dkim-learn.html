@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Learn DKIM | Certimailer</title>
@@ -23,207 +24,212 @@
 
 <body>
 
-<header>
-  <h2 class="logo">Certimailer</h2>
-  <nav>
-    <ul>
-      <li><a href="../homepage.html">Home</a></li>
-      <li><a href="../detection.html">Detection Tool</a></li>
-      <li><a href="../comparison.html">Comparison Tool</a></li>
-      <li><a href="../visualization.html">Visualization</a></li>
-      <li><a href="../learning.html" class="active">Learning</a></li>
-      <li><a href="../contact.html">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+  <header>
+    <h2 class="logo">Certimailer</h2>
+    <nav>
+      <ul>
+        <li><a href="../homepage.html">Home</a></li>
+        <li><a href="../detection.html">Detection Tool</a></li>
+        <li><a href="../comparison.html">Comparison Tool</a></li>
+        <li><a href="../generator.html">Record Generator</a></li>
+        <li><a href="../learning.html" class="active">Learning</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<!-- HERO -->
-<section class="hero">
-  <video class="hero-video" autoplay muted loop playsinline>
-    <source src="../videos/learn-bg.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
+  <!-- HERO -->
+  <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="../videos/learn-bg.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
 
-  <div class="hero-overlay"></div>
+    <div class="hero-overlay"></div>
 
-  <div class="hero-content">
-    <h1 class="hero-title">
-      DomainKeys Identified Mail
-      <span>(DKIM)</span>
-    </h1>
+    <div class="hero-content">
+      <h1 class="hero-title">
+        DomainKeys Identified Mail
+        <span>(DKIM)</span>
+      </h1>
 
-    <p>
-      Prove an email wasn’t altered in transit.<br />
-      Verify the sender’s domain signature.
-    </p>
+      <p>
+        Prove an email wasn’t altered in transit.<br />
+        Verify the sender’s domain signature.
+      </p>
 
-    <div class="hero-buttons">
-      <!-- keep these -->
-      <a class="learn-card-btn" href="#dkimDeck">Learn more</a>
-      <a class="learn-card-btn quiz-btn" href="dkim-quiz.html">Start quiz</a>
-    </div>
-  </div>
-</section>
-
-<!-- MAIN -->
-<div class="learn-container">
-
-  <h2 class="learn-page-title">Want to learn more about DKIM?</h2>
-
-  <!-- DECK -->
-  <section class="journey" id="dkimDeck">
-
-    <!-- Cover -->
-    <button class="journey-cover" id="deckToggle" type="button" aria-expanded="false">
-      <!-- Change this image to your DKIM cover -->
-      <img src="../images/learning-cover.jpg" alt="SPF cover" />
-      <div class="journey-cover-overlay">
-        <p class="journey-kicker">DKIM Learning</p>
-        <h3 class="journey-title">Tap to explore</h3>
+      <div class="hero-buttons">
+        <!-- keep these -->
+        <a class="learn-card-btn" href="#dkimDeck">Learn more</a>
+        <a class="learn-card-btn quiz-btn" href="dkim-quiz.html">Start quiz</a>
       </div>
-    </button>
-
-    <!-- Cards (hidden until expanded) -->
-    <div class="journey-cards" id="journeyCards" aria-hidden="true">
-
-      <article class="journey-card card-1">
-        <h3>What is DKIM?</h3>
-        <p>DKIM adds a digital signature so receivers can verify the sender’s domain.</p>
-      </article>
-
-      <article class="journey-card card-2">
-        <h3>How DKIM Works</h3>
-        <p>The sender signs headers; the receiver verifies using a public key in DNS.</p>
-      </article>
-
-      <article class="journey-card card-3">
-        <h3>Selectors & Keys</h3>
-        <p>A selector (s=) tells which DNS key to use, enabling safe key rotation.</p>
-      </article>
-
-      <article class="journey-card card-4">
-        <h3>Why DKIM Matters</h3>
-        <p>It detects tampering and helps protect brand trust and message integrity.</p>
-      </article>
-
-      <article class="journey-card card-5">
-        <h3>DKIM in Digital Forensics</h3>
-        <p>Results like “dkim=pass/fail” can support spoofing/tampering analysis.</p>
-      </article>
-
     </div>
   </section>
 
-  <!-- =========================
+  <!-- MAIN -->
+  <div class="learn-container">
+
+    <h2 class="learn-page-title">Want to learn more about DKIM?</h2>
+
+    <!-- DECK -->
+    <section class="journey" id="dkimDeck">
+
+      <!-- Cover -->
+      <button class="journey-cover" id="deckToggle" type="button" aria-expanded="false">
+        <!-- Change this image to your DKIM cover -->
+        <img src="../images/learning-cover.jpg" alt="SPF cover" />
+        <div class="journey-cover-overlay">
+          <p class="journey-kicker">DKIM Learning</p>
+          <h3 class="journey-title">Tap to explore</h3>
+        </div>
+      </button>
+
+      <!-- Cards (hidden until expanded) -->
+      <div class="journey-cards" id="journeyCards" aria-hidden="true">
+
+        <article class="journey-card card-1">
+          <h3>What is DKIM?</h3>
+          <p>DKIM adds a digital signature so receivers can verify the sender’s domain.</p>
+        </article>
+
+        <article class="journey-card card-2">
+          <h3>How DKIM Works</h3>
+          <p>The sender signs headers; the receiver verifies using a public key in DNS.</p>
+        </article>
+
+        <article class="journey-card card-3">
+          <h3>Selectors & Keys</h3>
+          <p>A selector (s=) tells which DNS key to use, enabling safe key rotation.</p>
+        </article>
+
+        <article class="journey-card card-4">
+          <h3>Why DKIM Matters</h3>
+          <p>It detects tampering and helps protect brand trust and message integrity.</p>
+        </article>
+
+        <article class="journey-card card-5">
+          <h3>DKIM in Digital Forensics</h3>
+          <p>Results like “dkim=pass/fail” can support spoofing/tampering analysis.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- =========================
      SECTION 1: Split feature
   ========================= -->
-  <section class="spf-scroll spf-split reveal">
-    <div class="split-left reveal delay-1">
-      <div class="feature-card">
-        <div class="feature-pill">DKIM • Deep Dive</div>
-        <h3>Understand integrity and authenticity</h3>
-        <p>
-          DKIM signs selected headers (and sometimes the body) with a private key.
-          Receivers verify the signature using the public key published in DNS.
-        </p>
+    <section class="spf-scroll spf-split reveal">
+      <div class="split-left reveal delay-1">
+        <div class="feature-card">
+          <div class="feature-pill">DKIM • Deep Dive</div>
+          <h3>Understand integrity and authenticity</h3>
+          <p>
+            DKIM signs selected headers (and sometimes the body) with a private key.
+            Receivers verify the signature using the public key published in DNS.
+          </p>
 
-        <div class="mini-box">
-          <div class="mini-title">What you’ll see in headers</div>
-          <code>DKIM-Signature: v=1; a=rsa-sha256; d=example.com; s=selector1; ...</code>
+          <div class="mini-box">
+            <div class="mini-title">What you’ll see in headers</div>
+            <code>DKIM-Signature: v=1; a=rsa-sha256; d=example.com; s=selector1; ...</code>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="split-right reveal delay-2">
-      <h2 class="section-title">DKIM verification outcomes</h2>
-      <p class="section-sub">
-        Receivers validate the signature and report results such as <strong>pass</strong> or <strong>fail</strong>.
-        DKIM alone doesn’t block mail — it provides cryptographic proof for trust decisions (often combined with DMARC).
-      </p>
+      <div class="split-right reveal delay-2">
+        <h2 class="section-title">DKIM verification outcomes</h2>
+        <p class="section-sub">
+          Receivers validate the signature and report results such as <strong>pass</strong> or <strong>fail</strong>.
+          DKIM alone doesn’t block mail — it provides cryptographic proof for trust decisions (often combined with
+          DMARC).
+        </p>
 
-      <div class="icon-row">
-        <div class="icon-chip"><span>✓</span> dkim=pass</div>
-        <div class="icon-chip"><span>✕</span> dkim=fail</div>
-        <div class="icon-chip"><span>!</span> signature missing</div>
-        <div class="icon-chip"><span>⟳</span> key rotated</div>
+        <div class="icon-row">
+          <div class="icon-chip"><span>✓</span> dkim=pass</div>
+          <div class="icon-chip"><span>✕</span> dkim=fail</div>
+          <div class="icon-chip"><span>!</span> signature missing</div>
+          <div class="icon-chip"><span>⟳</span> key rotated</div>
+        </div>
+
+        <a class="cta-link" href="dkim-quiz.html">Test your DKIM knowledge →</a>
       </div>
+    </section>
 
-      <a class="cta-link" href="dkim-quiz.html">Test your DKIM knowledge →</a>
-    </div>
-  </section>
-
-  <!-- =========================
+    <!-- =========================
      SECTION 2: Feature grid
   ========================= -->
-  <section class="spf-scroll spf-grid reveal">
-    <div class="grid-head reveal delay-1">
-      <div class="tiny-kicker">DKIM in practice</div>
-      <h2 class="section-title">What students usually miss</h2>
-      <p class="section-sub">
-        These DKIM concepts show up often in investigations and quiz questions.
+    <section class="spf-scroll spf-grid reveal">
+      <div class="grid-head reveal delay-1">
+        <div class="tiny-kicker">DKIM in practice</div>
+        <h2 class="section-title">What students usually miss</h2>
+        <p class="section-sub">
+          These DKIM concepts show up often in investigations and quiz questions.
+        </p>
+      </div>
+
+      <div class="grid-cards">
+        <article class="info-card reveal delay-1">
+          <h3>Signing vs Encryption</h3>
+          <p>
+            DKIM is a <strong>signature</strong>, not encryption. It proves integrity and domain-level authenticity,
+            but it doesn’t hide the message content.
+          </p>
+          <div class="tag">Quiz-aligned</div>
+        </article>
+
+        <article class="info-card reveal delay-2">
+          <h3>Selectors (s=) & DNS keys</h3>
+          <p>
+            The selector points to a DNS record holding the public key. This lets senders rotate keys without breaking
+            mail.
+            Forensics often checks if the selector/key exists and matches.
+          </p>
+          <div class="tag">Common troubleshooting</div>
+        </article>
+
+        <article class="info-card reveal delay-3">
+          <h3>Forensics (auth results)</h3>
+          <p>
+            Investigators correlate DKIM results (e.g., <strong>Authentication-Results</strong>) with other signals like
+            SPF/DMARC
+            to determine spoofing vs legitimate sending infrastructure.
+          </p>
+          <a class="mini-link" href="../header-analyzer.html">Open Header Analyzer →</a>
+        </article>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>© 2025 Certimailer. All Rights Reserved.</p>
+      <p class="footer-note">Built to promote secure email practices through interactive detection and education tools
       </p>
     </div>
+  </footer>
 
-    <div class="grid-cards">
-      <article class="info-card reveal delay-1">
-        <h3>Signing vs Encryption</h3>
-        <p>
-          DKIM is a <strong>signature</strong>, not encryption. It proves integrity and domain-level authenticity,
-          but it doesn’t hide the message content.
-        </p>
-        <div class="tag">Quiz-aligned</div>
-      </article>
+  <script>
+    // Deck expand/collapse (clean + only targets elements that exist)
+    window.addEventListener("DOMContentLoaded", () => {
+      const deck = document.getElementById("dkimDeck");
+      const toggle = document.getElementById("deckToggle");
+      const cards = document.getElementById("journeyCards");
+      if (!deck || !toggle || !cards) return;
 
-      <article class="info-card reveal delay-2">
-        <h3>Selectors (s=) & DNS keys</h3>
-        <p>
-          The selector points to a DNS record holding the public key. This lets senders rotate keys without breaking mail.
-          Forensics often checks if the selector/key exists and matches.
-        </p>
-        <div class="tag">Common troubleshooting</div>
-      </article>
+      function setExpanded(state) {
+        deck.classList.toggle("expanded", state);
+        toggle.setAttribute("aria-expanded", state ? "true" : "false");
+        cards.setAttribute("aria-hidden", state ? "false" : "true");
+      }
 
-      <article class="info-card reveal delay-3">
-        <h3>Forensics (auth results)</h3>
-        <p>
-          Investigators correlate DKIM results (e.g., <strong>Authentication-Results</strong>) with other signals like SPF/DMARC
-          to determine spoofing vs legitimate sending infrastructure.
-        </p>
-        <a class="mini-link" href="../header-analyzer.html">Open Header Analyzer →</a>
-      </article>
-    </div>
-  </section>
+      toggle.addEventListener("click", () => {
+        setExpanded(!deck.classList.contains("expanded"));
+      });
 
-</div>
-
-<footer class="site-footer">
-  <div class="footer-content">
-    <p>© 2025 Certimailer. All Rights Reserved.</p>
-    <p class="footer-note">Built to promote secure email practices through interactive detection and education tools</p>
-  </div>
-</footer>
-
-<script>
-  // Deck expand/collapse (clean + only targets elements that exist)
-  window.addEventListener("DOMContentLoaded", () => {
-    const deck = document.getElementById("dkimDeck");
-    const toggle = document.getElementById("deckToggle");
-    const cards = document.getElementById("journeyCards");
-    if (!deck || !toggle || !cards) return;
-
-    function setExpanded(state){
-      deck.classList.toggle("expanded", state);
-      toggle.setAttribute("aria-expanded", state ? "true" : "false");
-      cards.setAttribute("aria-hidden", state ? "false" : "true");
-    }
-
-    toggle.addEventListener("click", () => {
-      setExpanded(!deck.classList.contains("expanded"));
+      setExpanded(false);
     });
-
-    setExpanded(false);
-  });
-</script>
+  </script>
 
 </body>
+
 </html>
