@@ -118,7 +118,7 @@
 .q-card{
   width: min(760px, 100%);
   margin: 0 auto;
-  background: rgba(20, 18, 40, 0.78);
+  background: rgba(71, 37, 56, 0.78);
   border: 1px solid rgba(255,255,255,0.14);
   border-radius: 18px;
   padding: 18px;
@@ -298,12 +298,13 @@
 
 /* feedback */
 .feedback{
-  width: min(760px, 100%);
+  width: 760px;
   margin: 12px auto 0;
-  padding: 12px 14px;
+  padding: 14px 16px;
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.14);
   background: rgba(255,255,255,0.06);
+  box-sizing: border-box;        /* ✅ critical */
   line-height: 1.55;
   display: none;
 }
