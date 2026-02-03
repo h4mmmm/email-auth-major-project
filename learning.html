@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -54,203 +55,201 @@
       </div>
 
       <div class="hero-buttons reveal delay-2">
-        <button
-          class="hero-link-btn primary"
-          onclick="document.getElementById('learningStart').scrollIntoView({ behavior: 'smooth' });"
-        >
+        <button class="hero-link-btn primary"
+          onclick="document.getElementById('learningStart').scrollIntoView({ behavior: 'smooth' });">
           Start Learning
         </button>
       </div>
     </div>
   </div>
 
-  
+
   <!-- ✅ SCROLL TARGET -->
   <div id="learningStart"></div>
 
-  
-    <!-- Carousel section -->
-    <section class="topic-carousel" aria-label="Learning topics">
-      <div class="carousel-header">
-        <h2 class="carousel-header">Start Your Email Security Journey Here</h2>
-        <p class="carousel-subtext">  Discover how SPF, DKIM, and DMARC protect your inbox — one topic at a time. </p>
-      </div>
 
-      <!-- Apple-style viewport -->
-      <div class="apple-carousel" id="topicCarousel">
-        <div class="carousel-viewport" id="carouselViewport" tabindex="0">
-          <div class="carousel-track" id="carouselTrack">
+  <!-- Carousel section -->
+  <section class="topic-carousel" aria-label="Learning topics">
+    <div class="carousel-header">
+      <h2 class="carousel-header">Start Your Email Security Journey Here</h2>
+      <p class="carousel-subtext"> Discover how SPF, DKIM, and DMARC protect your inbox — one topic at a time. </p>
+    </div>
 
-            <!-- Slide 1 -->
-            <a class="topic-card apple-card" href="learning/spf-learn.html">
-              <div class="topic-media">
-                <!-- Replace with your own image -->
-                <img class="topic-thumb" src="images/topics/spf.png" alt="SPF topic image" loading="lazy">
-              </div>
-              <div class="topic-body">
-                <div class="topic-badge">SPF</div>
-                <h3>Sender Policy Framework</h3>
-                <p>Learn how SPF checks which servers are allowed to send for a domain.</p>
-                <span class="topic-cta">Learn →</span>
-              </div>
-            </a>
+    <!-- Apple-style viewport -->
+    <div class="apple-carousel" id="topicCarousel">
+      <div class="carousel-viewport" id="carouselViewport" tabindex="0">
+        <div class="carousel-track" id="carouselTrack">
 
-            <!-- Slide 2 -->
-            <a class="topic-card apple-card" href="learning/dkim-learn.html">
-              <div class="topic-media">
-                <img class="topic-thumb" src="images/topics/dkim.png" alt="DKIM topic image" loading="lazy">
-              </div>
-              <div class="topic-body">
-                <div class="topic-badge">DKIM</div>
-                <h3>DomainKeys Identified Mail</h3>
-                <p>Understand signatures, selectors, and what “DKIM pass” means.</p>
-                <span class="topic-cta">Learn →</span>
-              </div>
-            </a>
-
-            <!-- Slide 3 -->
-            <a class="topic-card apple-card" href="learning/dmarc-learn.html">
-              <div class="topic-media">
-                <img class="topic-thumb" src="images/topics/dmarc.png" alt="DMARC topic image" loading="lazy">
-              </div>
-              <div class="topic-body">
-                <div class="topic-badge">DMARC</div>
-                <h3>DMARC Policy</h3>
-                <p>See how alignment and policy rules reduce spoofing and phishing.</p>
-                <span class="topic-cta">Learn →</span>
-              </div>
-            </a>
-
-            <!-- Slide 4 -->
-            <a class="topic-card apple-card" href="learning/detection-learn.html">
-              <div class="topic-media">
-                <img class="topic-thumb" src="images/topics/tools.png" alt="Tools topic image" loading="lazy">
-              </div>
-              <div class="topic-body">
-                <div class="topic-badge">Tools</div>
-                <h3>How Detection Tools Help</h3>
-                <p>See how tools highlight weak settings and support investigations.</p>
-                <span class="topic-cta">Learn →</span>
-              </div>
-            </a>
-
+          <!-- Slide 1 -->
+          <a class="topic-card apple-card" href="learning/spf-learn.html">
+            <div class="topic-media">
+              <!-- Replace with your own image -->
+              <img class="topic-thumb" src="images/topics/spf.png" alt="SPF topic image" loading="lazy">
             </div>
+            <div class="topic-body">
+              <div class="topic-badge">SPF</div>
+              <h3>Sender Policy Framework</h3>
+              <p>Learn how SPF checks which servers are allowed to send for a domain.</p>
+              <span class="topic-cta">Learn →</span>
+            </div>
+          </a>
 
-          </div>
+          <!-- Slide 2 -->
+          <a class="topic-card apple-card" href="learning/dkim-learn.html">
+            <div class="topic-media">
+              <img class="topic-thumb" src="images/topics/dkim.png" alt="DKIM topic image" loading="lazy">
+            </div>
+            <div class="topic-body">
+              <div class="topic-badge">DKIM</div>
+              <h3>DomainKeys Identified Mail</h3>
+              <p>Understand signatures, selectors, and what “DKIM pass” means.</p>
+              <span class="topic-cta">Learn →</span>
+            </div>
+          </a>
+
+          <!-- Slide 3 -->
+          <a class="topic-card apple-card" href="learning/dmarc-learn.html">
+            <div class="topic-media">
+              <img class="topic-thumb" src="images/topics/dmarc.png" alt="DMARC topic image" loading="lazy">
+            </div>
+            <div class="topic-body">
+              <div class="topic-badge">DMARC</div>
+              <h3>DMARC Policy</h3>
+              <p>See how alignment and policy rules reduce spoofing and phishing.</p>
+              <span class="topic-cta">Learn →</span>
+            </div>
+          </a>
+
+          <!-- Slide 4 -->
+          <a class="topic-card apple-card" href="learning/detection-learn.html">
+            <div class="topic-media">
+              <img class="topic-thumb" src="images/topics/tools.png" alt="Tools topic image" loading="lazy">
+            </div>
+            <div class="topic-body">
+              <div class="topic-badge">Tools</div>
+              <h3>How Detection Tools Help</h3>
+              <p>See how tools highlight weak settings and support investigations.</p>
+              <span class="topic-cta">Learn →</span>
+            </div>
+          </a>
+
         </div>
 
-        <!-- Dots -->
-        <div class="carousel-dots" id="carouselDots" aria-label="Carousel navigation"></div>
       </div>
-    </section>
+    </div>
+
+    <!-- Dots -->
+    <div class="carousel-dots" id="carouselDots" aria-label="Carousel navigation"></div>
+    </div>
+  </section>
 
 
   <section class="quiz-section reveal">
     <div class="quiz-container">
       <h2 class="quiz-title">Want to test yourself?</h2>
-  <p class="quiz-subtitle">
-    Choose a topic and see how well you understand email security concepts.
-  </p>
+      <p class="quiz-subtitle">
+        Choose a topic and see how well you understand email security concepts.
+      </p>
 
 
-    <div class="quiz-grid-2">
-      <a href="learning/spf-quiz.html" class="quiz-card qc-spf">
-        <div class="qc-top">
-          <span class="qc-pill">QUIZ</span>
-          <span class="qc-dot"></span>
-        </div>
-        <h3>SPF Quiz</h3>
-        <p>Test how well you understand sender authentication.</p>
-        <span class="qc-cta">Start →</span>
-      </a>
+      <div class="quiz-grid-2">
+        <a href="learning/spf-quiz.html" class="quiz-card qc-spf">
+          <div class="qc-top">
+            <span class="qc-pill">QUIZ</span>
+            <span class="qc-dot"></span>
+          </div>
+          <h3>SPF Quiz</h3>
+          <p>Test how well you understand sender authentication.</p>
+          <span class="qc-cta">Start →</span>
+        </a>
 
-      <a href="learning/dkim-quiz.html" class="quiz-card qc-dkim">
-        <div class="qc-top">
-          <span class="qc-pill">QUIZ</span>
-          <span class="qc-dot"></span>
-        </div>
-        <h3>DKIM Quiz</h3>
-        <p>Check your knowledge of email integrity and signing.</p>
-        <span class="qc-cta">Start →</span>
-      </a>
+        <a href="learning/dkim-quiz.html" class="quiz-card qc-dkim">
+          <div class="qc-top">
+            <span class="qc-pill">QUIZ</span>
+            <span class="qc-dot"></span>
+          </div>
+          <h3>DKIM Quiz</h3>
+          <p>Check your knowledge of email integrity and signing.</p>
+          <span class="qc-cta">Start →</span>
+        </a>
 
-      <a href="learning/dmarc-quiz.html" class="quiz-card qc-dmarc">
-        <div class="qc-top">
-          <span class="qc-pill">QUIZ</span>
-          <span class="qc-dot"></span>
-        </div>
-        <h3>DMARC Quiz</h3>
-        <p>See if you can align policy and enforcement correctly.</p>
-        <span class="qc-cta">Start →</span>
-      </a>
+        <a href="learning/dmarc-quiz.html" class="quiz-card qc-dmarc">
+          <div class="qc-top">
+            <span class="qc-pill">QUIZ</span>
+            <span class="qc-dot"></span>
+          </div>
+          <h3>DMARC Quiz</h3>
+          <p>See if you can align policy and enforcement correctly.</p>
+          <span class="qc-cta">Start →</span>
+        </a>
 
 
-      <a href="learning/detection-quiz.html" class="quiz-card qc-detect">
-        <div class="qc-top">
-          <span class="qc-pill">QUIZ</span>
-          <span class="qc-dot"></span>
-        </div>
-        <h3>Detection Quiz</h3>
-        <p>Can you spot malicious emails and headers?</p>
-        <span class="qc-cta">Start →</span>
-      </a>
+        <a href="learning/detection-quiz.html" class="quiz-card qc-detect">
+          <div class="qc-top">
+            <span class="qc-pill">QUIZ</span>
+            <span class="qc-dot"></span>
+          </div>
+          <h3>Detection Quiz</h3>
+          <p>Can you spot malicious emails and headers?</p>
+          <span class="qc-cta">Start →</span>
+        </a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
- 
+
   <section class="quiz-features" id="quizzes">
 
-  <!-- ✅ Header stays on top -->
-  <div class="quiz-features-head">
-    <h2 class="quiz-feature-title">Incredible Quiz Features</h2>
-    <p class="quiz-feature-sub">
-      Our quizzes reinforce learning — not just memorisation.
-    </p>
-  </div>
-
-  <!-- ✅ Cards grid only -->
-  <div class="quiz-feature-grid">
-
-    <div class="quiz-feature-card">
-      <div class="quiz-icon">🧠</div>
-      <h3>Protocol-Specific Quizzes</h3>
-      <p>Each quiz focuses on one protocol — SPF, DKIM, or DMARC — so you master one concept at a time.</p>
+    <!-- ✅ Header stays on top -->
+    <div class="quiz-features-head">
+      <h2 class="quiz-feature-title">Incredible Quiz Features</h2>
+      <p class="quiz-feature-sub">
+        Our quizzes reinforce learning — not just memorisation.
+      </p>
     </div>
 
-    <div class="quiz-feature-card">
-      <div class="quiz-icon">🔀</div>
-      <h3>Randomised Every Attempt</h3>
-      <p>Questions are selected from a large bank, so no two attempts feel the same.</p>
-    </div>
+    <!-- ✅ Cards grid only -->
+    <div class="quiz-feature-grid">
 
-    <div class="quiz-feature-card">
-      <div class="quiz-icon">📊</div>
-      <h3>Progress & Feedback</h3>
-      <p>Track progress question by question and get instant explanations after each answer.</p>
-    </div>
+      <div class="quiz-feature-card">
+        <div class="quiz-icon">🧠</div>
+        <h3>Protocol-Specific Quizzes</h3>
+        <p>Each quiz focuses on one protocol — SPF, DKIM, or DMARC — so you master one concept at a time.</p>
+      </div>
 
-    <div class="quiz-feature-card">
-      <div class="quiz-icon">⏱️</div>
-      <h3>Timed for Focus</h3>
-      <p>A built-in timer keeps you focused while still letting you learn at your own pace.</p>
-    </div>
+      <div class="quiz-feature-card">
+        <div class="quiz-icon">🔀</div>
+        <h3>Randomised Every Attempt</h3>
+        <p>Questions are selected from a large bank, so no two attempts feel the same.</p>
+      </div>
 
-    <div class="quiz-feature-card">
-      <div class="quiz-icon">🏆</div>
-      <h3>Score & Retry</h3>
-      <p>See your score and time taken, then retry to improve and build confidence.</p>
-    </div>
+      <div class="quiz-feature-card">
+        <div class="quiz-icon">📊</div>
+        <h3>Progress & Feedback</h3>
+        <p>Track progress question by question and get instant explanations after each answer.</p>
+      </div>
 
-    <div class="quiz-feature-card">
-      <div class="quiz-icon">🎓</div>
-      <h3>Learning-Driven Design</h3>
-      <p>Quizzes connect directly to learning topics so you can apply concepts immediately.</p>
-    </div>
+      <div class="quiz-feature-card">
+        <div class="quiz-icon">⏱️</div>
+        <h3>Timed for Focus</h3>
+        <p>A built-in timer keeps you focused while still letting you learn at your own pace.</p>
+      </div>
 
-  </div>
-</section>
+      <div class="quiz-feature-card">
+        <div class="quiz-icon">🏆</div>
+        <h3>Score & Retry</h3>
+        <p>See your score and time taken, then retry to improve and build confidence.</p>
+      </div>
+
+      <div class="quiz-feature-card">
+        <div class="quiz-icon">🎓</div>
+        <h3>Learning-Driven Design</h3>
+        <p>Quizzes connect directly to learning topics so you can apply concepts immediately.</p>
+      </div>
+
+    </div>
+  </section>
 
 
   </main>
@@ -258,14 +257,13 @@
   <footer class="site-footer">
     <div class="footer-content">
       <p>© 2025 Certimailer. All Rights Reserved.</p>
-      <p class="footer-note">
-        Built to promote secure email practices through interactive detection and education tools
+      <p class="footer-note">Built to promote secure email practices through interactive detection and education tools
       </p>
     </div>
   </footer>
 
   <!-- Carousel auto-move + buttons -->
-    <script>
+  <script>
     window.addEventListener("DOMContentLoaded", () => {
       const viewport = document.getElementById("carouselViewport");
       const track = document.getElementById("carouselTrack");
@@ -361,4 +359,5 @@
 
 
 </body>
+
 </html>

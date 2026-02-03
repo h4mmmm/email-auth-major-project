@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Learn SPF | Certimailer</title>
@@ -25,276 +26,279 @@
 
 <body>
 
-<header>
-  <h2 class="logo">Certimailer</h2>
-  <nav>
-    <ul>
-      <li><a href="../homepage.html">Home</a></li>
-      <li><a href="../detection.html">Detection Tool</a></li>
-      <li><a href="../comparison.html">Comparison Tool</a></li>
-      <li><a href="../visualization.html">Visualization</a></li>
-      <li><a href="../learning.html" class="active">Learning</a></li>
-      <li><a href="../contact.html">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+  <header>
+    <h2 class="logo">Certimailer</h2>
+    <nav>
+      <ul>
+        <li><a href="../homepage.html">Home</a></li>
+        <li><a href="../detection.html">Detection Tool</a></li>
+        <li><a href="../comparison.html">Comparison Tool</a></li>
+        <li><a href="../visualization.html">Visualization</a></li>
+        <li><a href="../learning.html" class="active">Learning</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<!-- HERO -->
-<section class="hero">
-  <video class="hero-video" autoplay muted loop playsinline>
-    <source src="../videos/learn-bg.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
+  <!-- HERO -->
+  <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="../videos/learn-bg.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
 
-  <div class="hero-overlay"></div>
+    <div class="hero-overlay"></div>
 
-  <div class="hero-content">
-    <h1 class="hero-title">
-      Sender Policy Framework
-      <span>(SPF)</span>
-    </h1>
+    <div class="hero-content">
+      <h1 class="hero-title">
+        Sender Policy Framework
+        <span>(SPF)</span>
+      </h1>
 
-    <p>
-      Prevent email spoofing with SPF.<br />
-      Authorise trusted sending servers.
-    </p>
+      <p>
+        Prevent email spoofing with SPF.<br />
+        Authorise trusted sending servers.
+      </p>
 
-    <div class="hero-buttons">
-      <!-- keep these -->
-      <a class="learn-card-btn" href="#spfDeck">Learn more</a>
-      <a class="learn-card-btn quiz-btn" href="spf-quiz.html">Start quiz</a>
-    </div>
-  </div>
-</section>
-
-<!-- MAIN -->
-<div class="learn-container">
-
-  <h2 class="learn-page-title">Want to learn more about SPF?</h2>
-
-  <!-- DECK -->
-  <section class="journey" id="spfDeck">
-
-    <!-- Cover -->
-    <button class="journey-cover" id="deckToggle" type="button" aria-expanded="false">
-      <img src="../images/learning-cover.jpg" alt="SPF cover" />
-      <div class="journey-cover-overlay">
-        <p class="journey-kicker">SPF Learning</p>
-        <h3 class="journey-title">Tap to explore</h3>
+      <div class="hero-buttons">
+        <!-- keep these -->
+        <a class="learn-card-btn" href="#spfDeck">Learn more</a>
+        <a class="learn-card-btn quiz-btn" href="spf-quiz.html">Start quiz</a>
       </div>
-    </button>
-
-    <!-- Cards (hidden until expanded) -->
-    <div class="journey-cards" id="journeyCards" aria-hidden="true">
-
-      <article class="journey-card card-1">
-        <h3>What is SPF?</h3>
-        <p>SPF defines which mail servers can send email for a domain.</p>
-      </article>
-
-      <article class="journey-card card-2">
-        <h3>SPF Qualifiers</h3>
-        <p>Tell receivers how strict to be: +, -, ~, or ?</p>
-      </article>
-
-      <article class="journey-card card-3">
-        <h3>How SPF Works</h3>
-        <p>The receiver checks sender IP against the domain’s SPF DNS record.</p>
-      </article>
-
-      <article class="journey-card card-4">
-        <h3>Why SPF Matters</h3>
-        <p>It reduces spoofing by limiting who can send mail for your domain.</p>
-      </article>
-
-      <article class="journey-card card-5">
-        <h3>SPF in Digital Forensics</h3>
-        <p>SPF results in headers help indicate spoofed messages.</p>
-      </article>
-
     </div>
   </section>
 
-  <!-- =========================
+  <!-- MAIN -->
+  <div class="learn-container">
+
+    <h2 class="learn-page-title">Want to learn more about SPF?</h2>
+
+    <!-- DECK -->
+    <section class="journey" id="spfDeck">
+
+      <!-- Cover -->
+      <button class="journey-cover" id="deckToggle" type="button" aria-expanded="false">
+        <img src="../images/learning-cover.jpg" alt="SPF cover" />
+        <div class="journey-cover-overlay">
+          <p class="journey-kicker">SPF Learning</p>
+          <h3 class="journey-title">Tap to explore</h3>
+        </div>
+      </button>
+
+      <!-- Cards (hidden until expanded) -->
+      <div class="journey-cards" id="journeyCards" aria-hidden="true">
+
+        <article class="journey-card card-1">
+          <h3>What is SPF?</h3>
+          <p>SPF defines which mail servers can send email for a domain.</p>
+        </article>
+
+        <article class="journey-card card-2">
+          <h3>SPF Qualifiers</h3>
+          <p>Tell receivers how strict to be: +, -, ~, or ?</p>
+        </article>
+
+        <article class="journey-card card-3">
+          <h3>How SPF Works</h3>
+          <p>The receiver checks sender IP against the domain’s SPF DNS record.</p>
+        </article>
+
+        <article class="journey-card card-4">
+          <h3>Why SPF Matters</h3>
+          <p>It reduces spoofing by limiting who can send mail for your domain.</p>
+        </article>
+
+        <article class="journey-card card-5">
+          <h3>SPF in Digital Forensics</h3>
+          <p>SPF results in headers help indicate spoofed messages.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- =========================
      SECTION 1: Split feature
 ========================= -->
-<section class="spf-scroll spf-split reveal">
-  <div class="split-left reveal delay-1">
-    <div class="feature-card">
-      <div class="feature-pill">SPF • Deep Dive</div>
-      <h3>See why SPF reduces spoofing risk</h3>
-      <p>
-        SPF checks whether the sending server is authorised by the domain’s SPF record in DNS.
-        This helps mail systems flag forged “From” domains.
-      </p>
+    <section class="spf-scroll spf-split reveal">
+      <div class="split-left reveal delay-1">
+        <div class="feature-card">
+          <div class="feature-pill">SPF • Deep Dive</div>
+          <h3>See why SPF reduces spoofing risk</h3>
+          <p>
+            SPF checks whether the sending server is authorised by the domain’s SPF record in DNS.
+            This helps mail systems flag forged “From” domains.
+          </p>
 
-      <div class="mini-box">
-        <div class="mini-title">Example SPF record</div>
-        <code>v=spf1 ip4:203.0.113.0/24 include:_spf.google.com -all</code>
+          <div class="mini-box">
+            <div class="mini-title">Example SPF record</div>
+            <code>v=spf1 ip4:203.0.113.0/24 include:_spf.google.com -all</code>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <div class="split-right reveal delay-2">
-    <h2 class="section-title">How SPF is evaluated</h2>
-    <p class="section-sub">
-      A receiving mail server checks the sender IP against the rules in the domain’s SPF policy.
-      The result is a qualifier like <strong>pass</strong>, <strong>fail</strong>, <strong>softfail</strong>, or <strong>neutral</strong>.
-    </p>
+      <div class="split-right reveal delay-2">
+        <h2 class="section-title">How SPF is evaluated</h2>
+        <p class="section-sub">
+          A receiving mail server checks the sender IP against the rules in the domain’s SPF policy.
+          The result is a qualifier like <strong>pass</strong>, <strong>fail</strong>, <strong>softfail</strong>, or
+          <strong>neutral</strong>.
+        </p>
 
-    <div class="icon-row">
-      <div class="icon-chip"><span>✓</span> Pass</div>
-      <div class="icon-chip"><span>✕</span> Fail</div>
-      <div class="icon-chip"><span>~</span> Softfail</div>
-      <div class="icon-chip"><span>?</span> Neutral</div>
-    </div>
+        <div class="icon-row">
+          <div class="icon-chip"><span>✓</span> Pass</div>
+          <div class="icon-chip"><span>✕</span> Fail</div>
+          <div class="icon-chip"><span>~</span> Softfail</div>
+          <div class="icon-chip"><span>?</span> Neutral</div>
+        </div>
 
-    <a class="cta-link" href="spf-quiz.html">Test your SPF knowledge →</a>
-  </div>
-</section>
+        <a class="cta-link" href="spf-quiz.html">Test your SPF knowledge →</a>
+      </div>
+    </section>
 
 
-<!-- =========================
+    <!-- =========================
      SECTION 2: Feature grid
 ========================= -->
-<section class="spf-scroll spf-grid reveal">
-  <div class="grid-head reveal delay-1">
-    <div class="tiny-kicker">SPF in practice</div>
-    <h2 class="section-title">What students usually miss</h2>
-    <p class="section-sub">
-      These are the key SPF points that show up often in real investigations and quizzes.
-    </p>
+    <section class="spf-scroll spf-grid reveal">
+      <div class="grid-head reveal delay-1">
+        <div class="tiny-kicker">SPF in practice</div>
+        <h2 class="section-title">What students usually miss</h2>
+        <p class="section-sub">
+          These are the key SPF points that show up often in real investigations and quizzes.
+        </p>
+      </div>
+
+      <div class="grid-cards">
+        <article class="info-card reveal delay-1">
+          <h3>Qualifiers (-all, ~all, ?all)</h3>
+          <p>
+            The qualifier tells receivers what to do when the sender isn’t authorised.
+            <strong>-all</strong> is strict fail, <strong>~all</strong> is softfail, <strong>?all</strong> is neutral.
+          </p>
+          <div class="tag">Quiz-aligned</div>
+        </article>
+
+        <article class="info-card reveal delay-2">
+          <h3>Mechanisms (a, mx, ip4, include)</h3>
+          <p>
+            SPF is built using mechanisms. Common ones are <strong>mx</strong> (authorise MX servers),
+            <strong>a</strong> (authorise A record), <strong>ip4</strong>, and <strong>include</strong>.
+          </p>
+          <div class="tag">Real-world SPF records</div>
+        </article>
+
+        <article class="info-card reveal delay-3">
+          <h3>Forensics (header evidence)</h3>
+          <p>
+            Investigators look for SPF results in headers such as <strong>Received-SPF</strong>.
+            This helps confirm spoofing vs legitimate sending infrastructure.
+          </p>
+          <a class="mini-link" href="../header-analyzer.html">Open Header Analyzer →</a>
+        </article>
+      </div>
+    </section>
+
+
   </div>
 
-  <div class="grid-cards">
-    <article class="info-card reveal delay-1">
-      <h3>Qualifiers (-all, ~all, ?all)</h3>
-      <p>
-        The qualifier tells receivers what to do when the sender isn’t authorised.
-        <strong>-all</strong> is strict fail, <strong>~all</strong> is softfail, <strong>?all</strong> is neutral.
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>© 2025 Certimailer. All Rights Reserved.</p>
+      <p class="footer-note">Built to promote secure email practices through interactive detection and education tools
       </p>
-      <div class="tag">Quiz-aligned</div>
-    </article>
+    </div>
+  </footer>
 
-    <article class="info-card reveal delay-2">
-      <h3>Mechanisms (a, mx, ip4, include)</h3>
-      <p>
-        SPF is built using mechanisms. Common ones are <strong>mx</strong> (authorise MX servers),
-        <strong>a</strong> (authorise A record), <strong>ip4</strong>, and <strong>include</strong>.
-      </p>
-      <div class="tag">Real-world SPF records</div>
-    </article>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const deck = document.getElementById("spfDeck");
+      const toggle = document.getElementById("deckToggle");
+      const cards = document.getElementById("journeyCards");
 
-    <article class="info-card reveal delay-3">
-      <h3>Forensics (header evidence)</h3>
-      <p>
-        Investigators look for SPF results in headers such as <strong>Received-SPF</strong>.
-        This helps confirm spoofing vs legitimate sending infrastructure.
-      </p>
-      <a class="mini-link" href="../header-analyzer.html">Open Header Analyzer →</a>
-    </article>
-  </div>
-</section>
+      const continueWrap = document.getElementById("journeyContinueWrap");
+      const continueBtn = document.getElementById("continueBtn");
 
+      const stepsSection = document.getElementById("spfSteps");
+      const slides = Array.from(document.querySelectorAll(".step-slide"));
+      const dots = Array.from(document.querySelectorAll(".steps-dot"));
+      const prevBtn = document.getElementById("stepPrev");
+      const nextBtn = document.getElementById("stepNext");
 
-</div>
+      let expanded = false;
+      let idx = 0;
 
-<footer class="site-footer">
-  <div class="footer-content">
-    <p>© 2025 Certimailer. All Rights Reserved.</p>
-    <p class="footer-note">Built to promote secure email practices through interactive detection and education tools</p>
-  </div>
-</footer>
+      function setExpanded(state) {
+        expanded = state;
 
-<script>
-  window.addEventListener("DOMContentLoaded", () => {
-    const deck = document.getElementById("spfDeck");
-    const toggle = document.getElementById("deckToggle");
-    const cards = document.getElementById("journeyCards");
+        deck.classList.toggle("expanded", state);
+        toggle.setAttribute("aria-expanded", state ? "true" : "false");
+        cards.setAttribute("aria-hidden", state ? "false" : "true");
 
-    const continueWrap = document.getElementById("journeyContinueWrap");
-    const continueBtn = document.getElementById("continueBtn");
-
-    const stepsSection = document.getElementById("spfSteps");
-    const slides = Array.from(document.querySelectorAll(".step-slide"));
-    const dots = Array.from(document.querySelectorAll(".steps-dot"));
-    const prevBtn = document.getElementById("stepPrev");
-    const nextBtn = document.getElementById("stepNext");
-
-    let expanded = false;
-    let idx = 0;
-
-    function setExpanded(state) {
-      expanded = state;
-
-      deck.classList.toggle("expanded", state);
-      toggle.setAttribute("aria-expanded", state ? "true" : "false");
-      cards.setAttribute("aria-hidden", state ? "false" : "true");
-
-      if (state) {
-        continueWrap.hidden = false;
-        requestAnimationFrame(() => continueWrap.classList.add("show"));
-      } else {
-        continueWrap.classList.remove("show");
-        setTimeout(() => { continueWrap.hidden = true; }, 220);
-        stepsSection.hidden = true;
+        if (state) {
+          continueWrap.hidden = false;
+          requestAnimationFrame(() => continueWrap.classList.add("show"));
+        } else {
+          continueWrap.classList.remove("show");
+          setTimeout(() => { continueWrap.hidden = true; }, 220);
+          stepsSection.hidden = true;
+        }
       }
-    }
 
-    function renderSteps() {
-      slides.forEach((s, i) => s.classList.toggle("active", i === idx));
-      dots.forEach((d, i) => {
-        d.classList.toggle("active", i === idx);
-        d.classList.toggle("done", i < idx);
+      function renderSteps() {
+        slides.forEach((s, i) => s.classList.toggle("active", i === idx));
+        dots.forEach((d, i) => {
+          d.classList.toggle("active", i === idx);
+          d.classList.toggle("done", i < idx);
+        });
+
+        prevBtn.disabled = idx === 0;
+        nextBtn.textContent = (idx === slides.length - 1) ? "Finish" : "Next";
+      }
+
+      toggle.addEventListener("click", () => {
+        setExpanded(!expanded);
       });
 
-      prevBtn.disabled = idx === 0;
-      nextBtn.textContent = (idx === slides.length - 1) ? "Finish" : "Next";
-    }
+      continueBtn.addEventListener("click", () => {
+        // only allow after deck expanded
+        if (!expanded) return;
 
-    toggle.addEventListener("click", () => {
-      setExpanded(!expanded);
-    });
+        stepsSection.hidden = false;
+        stepsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        renderSteps();
+      });
 
-    continueBtn.addEventListener("click", () => {
-      // only allow after deck expanded
-      if (!expanded) return;
+      prevBtn.addEventListener("click", () => {
+        if (idx > 0) {
+          idx--;
+          renderSteps();
+        }
+      });
 
-      stepsSection.hidden = false;
-      stepsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      nextBtn.addEventListener("click", () => {
+        if (idx < slides.length - 1) {
+          idx++;
+          renderSteps();
+        } else {
+          // finish state: keep it subtle (no popup)
+          stepsSection.classList.add("completed");
+        }
+      });
+
+      // allow dot click navigation (optional but nice)
+      dots.forEach((dot, i) => {
+        dot.addEventListener("click", () => {
+          idx = i;
+          renderSteps();
+        });
+      });
+
+      // Start collapsed
+      setExpanded(false);
       renderSteps();
     });
-
-    prevBtn.addEventListener("click", () => {
-      if (idx > 0) {
-        idx--;
-        renderSteps();
-      }
-    });
-
-    nextBtn.addEventListener("click", () => {
-      if (idx < slides.length - 1) {
-        idx++;
-        renderSteps();
-      } else {
-        // finish state: keep it subtle (no popup)
-        stepsSection.classList.add("completed");
-      }
-    });
-
-    // allow dot click navigation (optional but nice)
-    dots.forEach((dot, i) => {
-      dot.addEventListener("click", () => {
-        idx = i;
-        renderSteps();
-      });
-    });
-
-    // Start collapsed
-    setExpanded(false);
-    renderSteps();
-  });
-</script>
+  </script>
 
 </body>
+
 </html>
